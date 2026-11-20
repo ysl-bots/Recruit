@@ -44,7 +44,7 @@
   dedupe    : 소스 간 중복 병합 → MergedPosting[]
   classify  : 키워드 판정 → 애매한 건은 LLM 재판정
   bigco     : 대기업·다부문 판정 → 신규 건만 상세 fetch → VLM으로 모집 부문 추출 → IT 부문 필터
-  diff      : data/postings.json과 비교 (신규/변경/마감)
+  state     : data/state.json(내부 전체 상태)과 병합, 마감 처리 → data/postings.json(에이전트용) 생성
   commit    : data/*.json 갱신 커밋
 
 [publish.yml] 월요일 08:xx KST (정각 회피, 예: 08:17)
@@ -294,7 +294,7 @@ ysl-bots/Recruit/
 │   ├── listed.yml           # 주간 상장사 목록 갱신
 │   └── test.yml
 ├── src/recruit/
-│   ├── __main__.py, cli.py  # collect / publish / run --dry-run --offline 등
+│   ├── __main__.py, cli.py  # collect / daily / publish / listed (--dry-run, --offline)
 │   ├── config.py, http.py   # Contest 패턴
 │   ├── sources/
 │   │   ├── base.py          # robots 확인, rate limit, 재시도
@@ -307,7 +307,9 @@ ysl-bots/Recruit/
 │   ├── bigco.py             # 대기업 판정, 상장사·모기업
 │   ├── extract.py           # 상세 → VLM 부문 추출
 │   ├── llm.py
-│   ├── diff.py
+│   ├── collect.py           # 소스 격리 수집, blocklist
+│   ├── pipeline.py          # daily / weekly, 장애 감지
+│   ├── offline.py           # fixture HTTP (--offline)
 │   ├── render.py
 │   ├── publish.py
 │   ├── state.py
@@ -321,7 +323,8 @@ ysl-bots/Recruit/
 │   ├── parent_company.yaml
 │   └── blocklist.yaml
 ├── data/
-│   ├── postings.json        # 열린 공고 전체 (MergedPosting)
+│   ├── state.json           # 내부 상태: 전체 병합 공고(비IT·마감 30일 포함), 발행 이력
+│   ├── postings.json        # 에이전트용: 열린 IT·maybe 공고
 │   ├── listed.json          # KRX 상장사
 │   ├── company_alias.json
 │   ├── dedupe_overrides.json
@@ -372,3 +375,25 @@ ysl-bots/Recruit/
 - ~~캐치 목록 API가 robots 허용 경로인지~~ → 허용 경로임을 확인했고 Playwright는 쓰지 않는다 (2026-11-20 스파이크).
 - KIND 다운로드는 로컬에서 정상 동작을 확인했다. Actions IP에서 되는지는 첫 실행 때 확인하고, 안 되면 data.go.kr 금융위 기업기본정보 API로 대체한다.
 - 상장사 조건을 넣으면 상세 추출 대상이 늘어난다. 첫 주에 실제 건수를 보고 `DETAIL_LIMIT`을 조정한다.
+
+## 16. 구현 메모 (2026-11-21)
+
+구현하면서 SPEC 본문과 달라졌거나 구체화한 점이다.
+
+- **상태 파일 분리**: 증분 수집과 병합에는 비IT·마감 공고까지 필요하다. 그래서 내부 상태는 `data/state.json`에 두고, `data/postings.json`은 에이전트용(열린 IT·maybe 공고만)으로 만든다.
+- **증분 수집 중단 조건**: 최신순으로 받다가, 한 페이지에서 필터를 통과한 공고가 모두 이미 본 것이면 멈춘다. 상태에는 통과한 공고만 남기 때문이다.
+- **마감 처리**: 마감일이 지나면 closed로 바꾼다. 상시·채용시 마감 공고는 최초 수집 후 60일이 지나면 closed로 바꾼다. closed 공고는 30일 보존해서 다시 신규로 잡히지 않게 한다.
+- **IT 분류 규칙 추가** (`config/it_keywords.yaml`)
+  - `개발`, `보안`, `QA`, `솔루션`, `디지털`처럼 넓은 단어는 ambiguous로 옮겨 LLM 재판정에 맡긴다. 실데이터에서 소재개발, 품질 QA 같은 오탐이 확인됐다.
+  - IT 키워드와 함께 영업·Sales·마케팅 같은 `conflict` 단어가 나오면 LLM 재판정으로 보낸다.
+  - 3자 이하 대문자 약어(IT, AI, SW)는 대소문자를 구분해 매칭한다.
+  - 자소설 공고는 부문별 직무 그룹으로 IT 여부가 정해지므로, 태그(상위 그룹명 'IT·인터넷' 등)는 키워드 판정에 쓰지 않는다.
+  - LLM·VLM 판정 결과는 다음 실행에서 다시 계산하지 않는다.
+- **캐치 고용형태**: 신입이면서 정규직이 아닌 공고(계약직만)는 제외한다. 인턴은 계약 형태와 관계없이 포함한다.
+- **부문 확보 우선순위**: 자소설 > 캐치 > VLM 순이다(`divisions_source`).
+- **대기업 판정 ①(태그 3개 이상)**: 자소설은 부문별 직무 그룹이 합쳐져 대부분 이 조건을 만족한다. 다만 이런 공고는 이미 구조화 부문이 있어서 VLM 비용이 늘지 않는다.
+- **VLM 추출 실패 처리**: 키워드나 소스 신호로 이미 IT로 판정된 공고는 IT를 유지하고, 그렇지 않으면 maybe로 둔다. 캐치에만 있는 공고는 상세를 볼 수 없으므로 maybe("상세 확인 불가")로 둔다.
+- **자동 off**: `sources.yaml`을 고쳐 쓰는 대신 `data/health.json`의 `disabled`에 기록한다. 사람이 지우면 재개된다.
+- **장애 감지**: 소스 오류나 원본 0건이면 즉시 alert를 연다. 일일 원본 건수가 7일 평균의 30% 미만이라는 기준은 평균이 10건 이상일 때만 적용한다. 증분 수집이라 일일 건수가 원래 들쭉날쭉하기 때문이다.
+- **주간 발행 중복 방지**: `state.json` `meta.published[주차]`로 판단한다. Contest처럼 artifact로 판단하지 않는다. Issue를 만든 뒤에는 댓글 실패가 있어도 발행 기록을 저장한다.
+- **로컬 LLM**: `LLM_BACKEND=codex`이면 `codex exec --output-schema`로 OpenRouter 호출을 대신한다. 이미지는 내려받아 `-i`로 넘긴다.

@@ -1,0 +1,30 @@
+name: test
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -e ".[dev]"
+      - run: pytest -q
+      - name: Offline pipeline
+        env:
+          DATA_DIR: ${{ runner.temp }}/data
+          LLM_BACKEND: none
+        run: |
+          mkdir -p "$DATA_DIR" && cp data/*.json "$DATA_DIR"/
+          python -m recruit daily --offline
+          python -m recruit publish --dry-run --out "$RUNNER_TEMP/issue.md"
