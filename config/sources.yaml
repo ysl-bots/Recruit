@@ -1,0 +1,11 @@
+# 소스별 on/off와 요청 상한. 차단(403/429)이 반복되면 PR로 enabled: false 처리한다.
+linkareer:
+  enabled: true
+  max_list_pages: 50     # 백필 시 상한. 평소에는 이미 본 공고가 나오면 멈춘다
+catch:
+  enabled: true
+  max_list_pages: 40
+jasoseol:
+  enabled: true
+  max_list_pages: 10
+# 상세 요청은 Settings.detail_limit(DETAIL_LIMIT)로 전체 합산 제한

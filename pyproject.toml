@@ -1,0 +1,27 @@
+[project]
+name = "recruit"
+version = "0.1.0"
+description = "IT 신입·인턴 공채 공고를 수집·병합해 주간 GitHub Issue로 발행"
+requires-python = ">=3.12"
+dependencies = [
+  "requests>=2.32",
+  "beautifulsoup4>=4.12",
+  "pydantic>=2.7",
+  "openai>=1.40",
+  "rapidfuzz>=3.9",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
