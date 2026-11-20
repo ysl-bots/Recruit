@@ -67,6 +67,7 @@ class MergedPosting(BaseModel):
     is_bigco: bool = False
     divisions: list[Division] | None = None
     divisions_from: Literal["source", "vlm"] | None = None
+    divisions_source: str | None = None
     it_divisions: list[str] = Field(default_factory=list)
     it_status: ItStatus = "unknown"
     it_tags: list[str] = Field(default_factory=list)
