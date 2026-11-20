@@ -66,7 +66,9 @@ def keyword_classify(m: MergedPosting) -> None:
             if not d.is_it and m.divisions_source == "catch":
                 d.is_it = bool(it_tags(d.name))
     it_div = [d.name for d in m.divisions or [] if d.is_it]
-    text = " ".join([m.title, *m.job_tags, *(d.name for d in m.divisions or [])])
+    # 자소설 부문은 직무그룹으로 IT 여부가 정해져 있으므로 태그(상위 그룹명 'IT·인터넷' 등) 키워드는 보지 않는다
+    authoritative = m.divisions_source == "jasoseol"
+    text = " ".join([m.title, *([] if authoritative else m.job_tags), *(d.name for d in m.divisions or [])])
     tags = it_tags(text)
     m.it_divisions = it_div
     m.it_tags = tags
@@ -74,7 +76,7 @@ def keyword_classify(m: MergedPosting) -> None:
         m.it_status, m.it_reason = "it", "source_division"
     elif m.source_it:
         m.it_status, m.it_reason = "it", "source_tag"
-    elif it_tags(" ".join([m.title, *m.job_tags])):
+    elif it_tags(" ".join([m.title, *([] if authoritative else m.job_tags)])):
         if has_conflict(m.title):
             m.it_status, m.it_reason, m.maybe_reason = "unknown", None, "IT 키워드 + 비IT 직무어"
         else:

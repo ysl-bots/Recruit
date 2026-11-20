@@ -52,7 +52,8 @@ class SourceLink(BaseModel):
 
 class MergedPosting(BaseModel):
     id: str
-    company: str
+    company: str  # 정규화명 (비교용)
+    company_name: str = ""  # 표시명
     title: str
     deadline: date | None = None
     deadline_type: DeadlineType = "date"

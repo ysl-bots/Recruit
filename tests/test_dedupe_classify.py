@@ -84,3 +84,11 @@ def test_keyword_classify():
     m = _m("2026 신입 공채", divisions=[Division(name="SW개발"), Division(name="경영지원")])
     keyword_classify(m)
     assert m.it_status == "it" and m.it_divisions == ["SW개발"]
+
+
+def test_jasoseol_divisions_override_tags():
+    p = P("jasoseol", "7", "AJ네트웍스", "수시채용 (신입/경력)", job_tags=["IT·인터넷", "영업"],
+          divisions=[Division(name="IT장비 B2B영업 (신입)", is_it=False)])
+    m = merge([], [p], TODAY, NO)[0]
+    keyword_classify(m)
+    assert m.it_status != "it"

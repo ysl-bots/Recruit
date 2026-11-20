@@ -38,6 +38,10 @@ def load_overrides(path=None) -> tuple[set[frozenset[str]], set[frozenset[str]]]
     return merge, split
 
 
+def display_company(raw: str) -> str:
+    return " ".join(N._CORP_TOKENS.sub(" ", raw or "").split())
+
+
 def make_id(p: Posting) -> str:
     base = f"{p.company}|{N.title(p.title, p.company_raw)}|{p.deadline or p.deadline_type}|{p.source}:{p.source_id}"
     return hashlib.sha1(base.encode()).hexdigest()[:12]
@@ -69,6 +73,7 @@ def _apply(m: MergedPosting, p: Posting, today: date) -> None:
     m.sources.sort(key=lambda s: _rank(s.source))
     if _rank(p.source) <= best:
         m.title = p.title or m.title
+        m.company_name = display_company(p.company_raw) or m.company_name
         if p.deadline or p.deadline_type != "date":
             m.deadline, m.deadline_type = p.deadline, p.deadline_type
         m.start_date = p.start_date or m.start_date

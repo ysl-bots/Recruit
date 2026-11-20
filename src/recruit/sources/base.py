@@ -43,14 +43,18 @@ class Source(ABC):
     def collect(self, seen: set[str] | None = None) -> list[Posting]:
         seen = seen or set()
         out: dict[str, Posting] = {}
+        self.raw_count = 0  # 파싱된 원본 항목 수 (필터 전). 0이면 파서 깨짐 의심
         for page in range(1, self.max_pages + 1):
             items, page_ids = self.fetch_page_with_ids(page)
+            self.raw_count += len(page_ids)
             if not page_ids:
                 break
             for p in items:
                 if p and p.source_id not in out:
                     out[p.source_id] = p
-            if seen and all(i in seen for i in page_ids):
+            # 상태에는 필터를 통과한 공고만 남으므로, 통과 항목이 모두 이미 본 것일 때 멈춘다
+            kept = [p.source_id for p in items if p]
+            if seen and kept and all(i in seen for i in kept):
                 log.info("%s: %d페이지에서 이미 본 공고만 나와 중단", self.name, page)
                 break
         return list(out.values())
