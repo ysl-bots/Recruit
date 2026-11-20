@@ -2,7 +2,11 @@
 
 from __future__ import annotations
 
+import json
+from functools import cache
+
 from .. import normalize as N
+from ..config import CONFIG_DIR
 from ..models import Division, Posting
 from .base import Detail, Source, html_images, html_to_text
 
@@ -12,6 +16,12 @@ NEWBIE, CAREER, INTERN = 1, 2, 3
 # /api/v1/duty-groups 의 IT·인터넷(94) 하위. 171(서비스기획·PM)은 애매하므로 제외
 IT_DUTY_GROUPS = set(range(160, 171))
 BUSINESS_SIZE = {"big_business": "대기업", "middle_market": "중견기업", "public_institution": "공공기관"}
+
+
+@cache
+def duty_names() -> dict[int, str]:
+    path = CONFIG_DIR / "jasoseol_duty_groups.json"
+    return {int(k): v for k, v in json.loads(path.read_text(encoding="utf-8")).items()} if path.exists() else {}
 
 
 def list_url(page: int) -> str:
@@ -60,7 +70,7 @@ def parse_item(x: dict, now) -> Posting | None:
         company_raw=x.get("name") or group.get("name") or "",
         company=N.company(x.get("name") or group.get("name") or ""),
         title=title,
-        job_tags=[f"duty:{g}" for g in sorted(tags)],
+        job_tags=[duty_names().get(g, f"duty:{g}") for g in sorted(tags)],
         employment=employment,
         start_date=N.to_date(x.get("start_time")),
         deadline=N.to_date(x.get("end_time")),

@@ -31,10 +31,10 @@ def parse_item(x: dict, now) -> Posting | None:
     if "인턴" in gubun:
         guess = N.employment(title)
         employment = guess if guess in ("채용연계형 인턴", "체험형 인턴") else "인턴"
-    elif "신입" in career:
+    elif "신입" in career and "정규직" in gubun:
         employment = "신입"
     else:
-        return None  # 경력·경력무관
+        return None  # 경력·경력무관, 신입 계약직
     end_code = x.get("ApplyEndCode") or ""
     if "채용시" in end_code:
         deadline_type, deadline = "until_filled", None
