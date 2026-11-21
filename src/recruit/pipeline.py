@@ -17,7 +17,7 @@ from .extract import extract_all
 from .llm import LLM
 from .models import MergedPosting
 from .publish import comment, create_issue, lock_issue, open_alert, renew_interaction_limit
-from .render import render, week_id, week_range
+from .render import render, week_id, week_label, week_range
 from .state import State, load_health, open_public, save_health
 
 log = logging.getLogger(__name__)
@@ -142,10 +142,15 @@ def weekly(settings: Settings, dry_run: bool = False, out: str | None = None, fo
     for d in load_health(settings.data_dir).get("days", []):
         if date.fromisoformat(d["date"]) > today - timedelta(days=7):
             failed.update(d.get("errors") or {})
+    # 설정에서 끈 소스는 '실패'가 아니라 제외이므로 경고하지 않는다
+    from .config import load_yaml
+
+    cfg = load_yaml("sources.yaml")
+    failed = {k: v for k, v in failed.items() if cfg.get(k, {}).get("enabled", True)}
     raw = f"https://raw.githubusercontent.com/{settings.code_repo}/main/data"
     body, extra = render(sections, today, failed, f"{raw}/weekly/{wid}.json", f"{raw}/postings.json")
     n_new = len(sections["new"]) + len(sections["rolling"])
-    title = f"[IT 공채] {wid} ({start:%m/%d}~{end:%m/%d}) 신규 {n_new}건 · 마감임박 {len(sections['urgent'])}건"
+    title = f"[IT 공채] {week_label(today)} ({start:%m/%d}~{end:%m/%d}) 신규 {n_new}건 · 마감임박 {len(sections['urgent'])}건"
     weekly_json = {
         "week": wid,
         "published": str(today),

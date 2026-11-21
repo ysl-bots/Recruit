@@ -2,8 +2,9 @@
 linkareer:
   enabled: true
   max_list_pages: 50     # 백필 시 상한. 평소에는 이미 본 공고가 나오면 멈춘다
+# 2026-11-21 GitHub Actions IP에서 403(Cloudflare) → 정책상 우회하지 않고 제외. 허용 회신을 받으면 다시 켠다
 catch:
-  enabled: true
+  enabled: false
   max_list_pages: 40
 jasoseol:
   enabled: true

@@ -9,7 +9,6 @@ from .models import SOURCE_LABEL, MergedPosting
 
 MAX_BODY = 65000  # GitHub Issue 본문 상한 65,536자에 여유를 둔다
 _SAFE_URL = re.compile(r"^https://[^\s()<>\[\]|]+$")
-SOURCE_NAMES = "링커리어 · 자소설닷컴 · 캐치"
 
 
 def esc(text: str) -> str:
@@ -22,6 +21,20 @@ def esc(text: str) -> str:
 def week_id(d: date) -> str:
     y, w, _ = d.isocalendar()
     return f"{y}-W{w:02d}"
+
+
+def week_label(d: date) -> str:
+    """'11월 4째주'. 주(월~일)는 목요일이 속한 달로 센다 (ISO 주차와 같은 기준)."""
+    thu = d - timedelta(days=d.weekday()) + timedelta(days=3)
+    return f"{thu.month}월 {(thu.day - 1) // 7 + 1}째주"
+
+
+def source_names() -> str:
+    from .config import load_yaml
+
+    cfg = load_yaml("sources.yaml")
+    labels = {"linkareer": "링커리어", "jasoseol": "자소설닷컴", "catch": "캐치"}
+    return " · ".join(v for k, v in labels.items() if cfg.get(k, {}).get("enabled", True))
 
 
 def week_range(d: date) -> tuple[date, date]:
@@ -70,7 +83,7 @@ def render(sections: dict[str, list[MergedPosting]], today: date, failed: dict[s
     """(본문, 이어 붙일 댓글들)."""
     names = {"catch": "캐치", "jasoseol": "자소설닷컴", "linkareer": "링커리어"}
     head = [
-        f"> 수집 소스: {SOURCE_NAMES} | 수집일 {today:%Y-%m-%d}",
+        f"> 수집 소스: {source_names()} | 수집일 {today:%Y-%m-%d}",
         "> 공고 원문은 각 링크에서 확인하세요. 봇이 수집한 정보는 틀릴 수 있습니다.",
     ]
     if failed:

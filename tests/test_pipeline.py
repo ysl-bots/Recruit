@@ -86,3 +86,12 @@ def test_render_split_long():
 
 def test_esc():
     assert esc("a|b [x](y)") == "a\\|b \\[x\\](y)"
+
+
+def test_week_label():
+    from recruit.render import week_label
+
+    assert week_label(date(2026, 11, 23)) == "11월 4째주"
+    assert week_label(date(2026, 11, 30)) == "12월 1째주"  # 11/30~12/6: 목요일 12/3
+    assert week_label(date(2026, 12, 28)) == "12월 5째주"
+    assert week_label(date(2026, 12, 29)) == "12월 5째주"

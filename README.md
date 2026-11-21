@@ -1,9 +1,10 @@
 # Recruit
 
-링커리어·자소설닷컴·캐치의 신입·인턴 채용 공고를 매일 모아 중복을 합치고, IT 직무 공고만 골라 매주 GitHub Issue로 발행하는 봇입니다.
+링커리어·자소설닷컴의 신입·인턴 채용 공고를 매일 모아 중복을 합치고, IT 직무 공고만 골라 매주 GitHub Issue로 발행하는 봇입니다.
 
 - 구독: **[ysl-bots/Recruit-Subscribe-IT](https://github.com/ysl-bots/Recruit-Subscribe-IT)** ← Watch
 - 이 저장소: 수집·병합·분류 코드, 워크플로, 상태 데이터(`data/`)
+- 캐치는 GitHub Actions IP에서 403(Cloudflare)이 나서 2026-11-21부터 제외했습니다. 정책상 우회하지 않습니다(`config/sources.yaml`).
 - 설계: [SPEC.md](SPEC.md) · 스파이크 결과: [docs/spike.md](docs/spike.md)
 
 ## 동작 방식
