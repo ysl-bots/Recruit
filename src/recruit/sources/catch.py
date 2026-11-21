@@ -80,6 +80,7 @@ def parse_list(data: dict, now) -> tuple[list[Posting | None], list[str]]:
 
 class Catch(Source):
     name = "catch"
+    page_size = PAGE_SIZE
 
     def fetch_page_with_ids(self, page: int):
         return parse_list(self.client.get_json(API, list_params(page)), self.now)

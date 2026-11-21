@@ -26,9 +26,11 @@ class Detail:
 
 class Source(ABC):
     name: str
+    page_size: int = 20
 
-    def __init__(self, client: HttpClient, today: date, now: datetime, max_pages: int = 10):
+    def __init__(self, client: HttpClient, today: date, now: datetime, max_pages: int = 10, filters: dict | None = None):
         self.client = client
+        self.filters = filters or {}
         self.today = today
         self.now = now
         self.max_pages = max_pages
@@ -40,23 +42,22 @@ class Source(ABC):
     def raw_ids(self, page_items: list[Posting | None]) -> list[str]:
         return [p.source_id for p in page_items if p]
 
-    def collect(self, seen: set[str] | None = None) -> list[Posting]:
-        seen = seen or set()
+    def collect(self) -> list[Posting]:
+        """필터 결과 전체를 받는다(마감 판정에 필요). 빈 페이지가 나오거나 max_pages에서 멈춘다."""
         out: dict[str, Posting] = {}
         self.raw_count = 0  # 파싱된 원본 항목 수 (필터 전). 0이면 파서 깨짐 의심
+        self.complete = False  # 끝 페이지까지 읽었는지. 아니면 '빠진 공고 = 마감' 판정을 하지 않는다
         for page in range(1, self.max_pages + 1):
             items, page_ids = self.fetch_page_with_ids(page)
             self.raw_count += len(page_ids)
-            if not page_ids:
-                break
             for p in items:
                 if p and p.source_id not in out:
                     out[p.source_id] = p
-            # 상태에는 필터를 통과한 공고만 남으므로, 통과 항목이 모두 이미 본 것일 때 멈춘다
-            kept = [p.source_id for p in items if p]
-            if seen and kept and all(i in seen for i in kept):
-                log.info("%s: %d페이지에서 이미 본 공고만 나와 중단", self.name, page)
+            if len(page_ids) < self.page_size:
+                self.complete = True
                 break
+        else:
+            log.warning("%s: max_pages(%d)에 도달해 끝까지 읽지 못함", self.name, self.max_pages)
         return list(out.values())
 
     def fetch_page_with_ids(self, page: int) -> tuple[list[Posting | None], list[str]]:

@@ -15,8 +15,14 @@ IT_CATEGORY_ROOT = "100003"  # IT/개발
 RECRUIT_TYPE = {"ASAP": "until_filled", "ALWAYS": "rolling"}
 
 
-def list_url(page: int) -> str:
-    return f"{BASE}/list/recruit?filterBy_jobTypes=NEW&filterBy_jobTypes=INTERN&page={page}"
+def list_url(page: int, filters: dict | None = None) -> str:
+    """사이트 필터를 filterBy_<키>=<값> 반복 파라미터로 붙인다 (링커리어 목록 URL 형식 그대로)."""
+    filters = filters or {"jobTypes": ["NEW", "INTERN"]}
+    q = ["filterBy_activityTypeID=5", "filterBy_status=OPEN"]
+    for key, vals in filters.items():
+        q += [f"filterBy_{key}={v}" for v in (vals if isinstance(vals, list) else [vals])]
+    q += ["orderBy_direction=DESC", "orderBy_field=RECENT", f"page={page}"]
+    return f"{BASE}/list/recruit?" + "&".join(q)
 
 
 def apollo_state(html: str) -> dict:
@@ -49,7 +55,8 @@ def _employment(state: dict, act: dict) -> str:
     for ri in act.get("recruitInformations") or []:
         info = _deref(state, ri)
         intern_names += [_deref(state, t).get("name", "") for t in info.get("internTypes") or []]
-    if "INTERN" in job_types:
+    # 신입·인턴이 함께 표시된 공고는 제목에 '인턴'이 있을 때만 인턴으로 본다 (예: '신입 정규직 채용'에 INTERN이 붙은 경우)
+    if "INTERN" in job_types and ("NEW" not in job_types or "인턴" in act.get("title", "")):
         names = " ".join(intern_names)
         guess = N.employment(names + " " + act.get("title", ""))
         return guess if guess != "기타" and guess != "신입" else "인턴"
@@ -74,12 +81,13 @@ def parse_list(html: str, now) -> tuple[list[Posting | None], list[str]]:
         cats = [_deref(state, c) for c in act.get("categories") or []]
         tags, source_it = [], False
         for c in cats:
-            name = c.get("name", "")
             parent = _deref(state, c.get("parent")).get("id") if c.get("parent") else None
-            if name and name != "전체":
-                tags.append(name)
             if str(c.get("id")) == IT_CATEGORY_ROOT or str(parent) == IT_CATEGORY_ROOT:
                 source_it = True
+                # IT/개발 하위 직무명만 분야로 쓴다. '전체'는 상위명으로
+                name = c.get("name", "")
+                tags.append("IT/개발" if name in ("", "전체") else name)
+        tags = list(dict.fromkeys(tags))
         deadline_type = RECRUIT_TYPE.get(act.get("recruitType") or "", "date")
         items.append(
             Posting(
@@ -113,7 +121,7 @@ class Linkareer(Source):
     name = "linkareer"
 
     def fetch_page_with_ids(self, page: int):
-        return parse_list(self.client.get_text(list_url(page)), self.now)
+        return parse_list(self.client.get_text(list_url(page, self.filters)), self.now)
 
     def fetch_page(self, page: int):
         return self.fetch_page_with_ids(page)[0]

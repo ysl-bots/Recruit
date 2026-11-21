@@ -85,7 +85,7 @@ def _apply(m: MergedPosting, p: Posting, today: date) -> None:
     m.job_tags = sorted(set(m.job_tags) | set(p.job_tags))
     m.source_it = m.source_it or p.source_it
     m.company_category = m.company_category or p.company_category
-    # 구조화 부문: 자소설(직무그룹 기반 is_it 포함) > 캐치 > VLM 추출
+    # 구조화 부문: 자소설(직무그룹 기반 is_it 포함) > 캐치
     if p.divisions and (m.divisions_from != "source" or m.divisions_source in (None, p.source) or p.source == "jasoseol"):
         m.divisions = [d.model_copy() for d in p.divisions]
         m.divisions_from = "source"

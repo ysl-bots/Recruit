@@ -45,6 +45,20 @@ class State:
                 out.setdefault(s.source, set()).add(s.source_id)
         return out
 
+    def close_unseen(self, seen: set[tuple[str, str]], complete: set[str], today: date) -> int:
+        """끝까지 읽은 소스의 결과에서 빠진 공고는 마감(또는 필터 조건에서 벗어남)으로 본다.
+        병합 공고는 모든 소스 링크가 '빠짐'일 때만 닫는다. 실패·미완료 소스의 링크는 판단하지 않는다(살아있다고 본다)."""
+        n = 0
+        for m in self.postings:
+            if m.status != "open":
+                continue
+            alive = any((s.source, s.source_id) in seen or s.source not in complete for s in m.sources)
+            if not alive:
+                m.status = "closed"
+                m.last_seen = m.last_seen or today
+                n += 1
+        return n
+
     def close_and_prune(self, today: date, retention_days: int) -> None:
         keep = []
         for m in self.postings:

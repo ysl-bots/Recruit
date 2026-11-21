@@ -23,7 +23,6 @@ jobs:
       - name: Offline pipeline
         env:
           DATA_DIR: ${{ runner.temp }}/data
-          LLM_BACKEND: none
         run: |
           mkdir -p "$DATA_DIR" && cp data/*.json "$DATA_DIR"/
           python -m recruit daily --offline

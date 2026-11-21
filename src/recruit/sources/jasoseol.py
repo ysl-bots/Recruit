@@ -13,8 +13,8 @@ from .base import Detail, Source, html_images, html_to_text
 BASE = "https://jasoseol.com"
 # employments[].division
 NEWBIE, CAREER, INTERN = 1, 2, 3
-# /api/v1/duty-groups 의 IT·인터넷(94) 하위. 171(서비스기획·PM)은 애매하므로 제외
-IT_DUTY_GROUPS = set(range(160, 171))
+# 기본값. 실제로는 config/sources.yaml jasoseol.filters.duty_group_ids를 쓴다
+IT_DUTY_GROUPS = {160, *range(164, 183)}
 BUSINESS_SIZE = {"big_business": "대기업", "middle_market": "중견기업", "public_institution": "공공기관"}
 
 
@@ -24,8 +24,17 @@ def duty_names() -> dict[int, str]:
     return {int(k): v for k, v in json.loads(path.read_text(encoding="utf-8")).items()} if path.exists() else {}
 
 
-def list_url(page: int) -> str:
-    return f"{BASE}/api/v1/employment_companies?per_page=100&page={page}"
+def list_params(page: int, filters: dict | None = None) -> dict:
+    """자소설 검색 화면이 API로 보내는 형식 그대로 (searchFiltersToApi: by_<키>=쉼표 목록)."""
+    params: dict = {"per_page": 100, "page": page}
+    for key, vals in (filters or {}).items():
+        params[f"by_{key}"] = ",".join(map(str, vals if isinstance(vals, list) else [vals]))
+    return params
+
+
+def it_duty_groups(filters: dict | None) -> set[int]:
+    ids = (filters or {}).get("duty_group_ids")
+    return set(map(int, ids)) if ids else IT_DUTY_GROUPS
 
 
 def _emp_of(e: dict, title: str) -> str | None:
@@ -41,7 +50,7 @@ def _emp_of(e: dict, title: str) -> str | None:
     return None
 
 
-def parse_item(x: dict, now) -> Posting | None:
+def parse_item(x: dict, now, it_groups: set[int] = IT_DUTY_GROUPS) -> Posting | None:
     title = (x.get("title") or "").strip()
     divisions: list[Division] = []
     tags: set[int] = set()
@@ -52,9 +61,9 @@ def parse_item(x: dict, now) -> Posting | None:
         if not emp:
             continue
         groups = set(e.get("duty_group_ids") or [])
-        is_it = bool(groups & IT_DUTY_GROUPS)
+        is_it = bool(groups & it_groups)
         source_it |= is_it
-        tags |= groups
+        tags |= groups & it_groups
         emps.append(emp)
         if e.get("field"):
             divisions.append(Division(name=e["field"].strip(), is_it=is_it, employment=emp))
@@ -82,11 +91,11 @@ def parse_item(x: dict, now) -> Posting | None:
     )
 
 
-def parse_list(data: list[dict], now) -> tuple[list[Posting | None], list[str]]:
+def parse_list(data: list[dict], now, it_groups: set[int] = IT_DUTY_GROUPS) -> tuple[list[Posting | None], list[str]]:
     items, ids = [], []
     for x in data:
         ids.append(str(x["id"]))
-        p = parse_item(x, now)
+        p = parse_item(x, now, it_groups)
         # 이미 마감된 공고는 버린다
         if p and p.deadline and p.deadline < now.date():
             p = None
@@ -101,12 +110,16 @@ def parse_detail(data: dict) -> Detail:
 
 class Jasoseol(Source):
     name = "jasoseol"
+    page_size = 100
 
     def fetch_page_with_ids(self, page: int):
-        data = self.client.get_json(list_url(page))
+        params = list_params(page, self.filters)
+        # 마감 지난 공고 제외 (검색 화면의 '마감 공고 제외'와 같은 파라미터)
+        params["after_end_time"] = self.now.date().isoformat()
+        data = self.client.get_json(f"{BASE}/api/v1/employment_companies", params)
         if not isinstance(data, list):
             raise ValueError("employment_companies 응답이 배열이 아님 (API 변경 가능성)")
-        return parse_list(data, self.now)
+        return parse_list(data, self.now, it_duty_groups(self.filters))
 
     def fetch_page(self, page: int):
         return self.fetch_page_with_ids(page)[0]

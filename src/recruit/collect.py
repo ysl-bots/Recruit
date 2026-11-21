@@ -18,6 +18,7 @@ class CollectResult:
     postings: list[Posting] = field(default_factory=list)
     counts: dict[str, int] = field(default_factory=dict)
     raw: dict[str, int] = field(default_factory=dict)
+    complete: set[str] = field(default_factory=set)  # 끝까지 읽은 소스 → 결과에서 빠진 공고를 마감 처리
     errors: dict[str, str] = field(default_factory=dict)  # source → 사유
     blocked: set[str] = field(default_factory=set)
 
@@ -36,7 +37,6 @@ def blocklisted(p: Posting) -> bool:
 def collect_all(
     settings: Settings,
     client: HttpClient,
-    seen: dict[str, set[str]] | None = None,
     only: list[str] | None = None,
     disabled: dict | None = None,
 ) -> CollectResult:
@@ -54,9 +54,9 @@ def collect_all(
             log.warning("%s: 차단 반복으로 자동 off 상태 (data/health.json disabled에서 지우면 재개)", name)
             res.errors[name] = "자동 off (차단 반복)"
             continue
-        src = cls(client, now.date(), now, max_pages=int(sc.get("max_list_pages", 10)))
+        src = cls(client, now.date(), now, max_pages=int(sc.get("max_list_pages", 10)), filters=sc.get("filters"))
         try:
-            items = src.collect((seen or {}).get(name, set()))
+            items = src.collect()
         except Blocked as exc:
             log.error("%s 차단: %s", name, exc)
             res.errors[name] = f"차단({exc})"
@@ -75,6 +75,8 @@ def collect_all(
         res.raw[name] = getattr(src, "raw_count", 0)
         if res.raw[name] == 0:
             res.errors[name] = "목록 0건 (파서 깨짐 의심)"
+        elif getattr(src, "complete", False):
+            res.complete.add(name)
         res.postings += items
         log.info("%s: %d건", name, len(items))
     return res

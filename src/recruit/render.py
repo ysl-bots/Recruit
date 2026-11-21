@@ -93,14 +93,13 @@ def render(sections: dict[str, list[MergedPosting]], today: date, failed: dict[s
         "urgent": "## 마감 임박 (D-7 이내)",
         "new": "## 이번 주 신규",
         "rolling": "## 상시 · 채용시 마감",
-        "maybe": "## IT 관련 가능성",
     }
     for key, title in titles.items():
         items = sections.get(key, [])
         if not items:
             blocks.append([title, "", "_해당 공고 없음_"])
             continue
-        blocks.append([title, "", *table(items, today, reason=(key == "maybe"))])
+        blocks.append([title, "", *table(items, today)])
     foot = ["---", f"에이전트용 데이터: [이번 주 JSON]({json_url}) · [열린 공고 전체 postings.json]({all_url})"]
 
     # 길이 초과 시 블록·행 단위로 댓글로 넘긴다

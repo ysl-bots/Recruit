@@ -26,17 +26,13 @@ class FixtureHttp:
     def get_text(self, url: str, params: dict | None = None, encoding: str | None = None) -> str:
         page = self._page(url, params)
         if "linkareer.com/list/recruit" in url:
-            return {1: (FIX / "linkareer_recruit_list.html").read_text(encoding="utf-8"),
-                    2: (FIX / "linkareer_recruit_list_it.html").read_text(encoding="utf-8")}.get(page, EMPTY_NEXT)
+            return (FIX / "linkareer_recruit_filtered.html").read_text(encoding="utf-8") if page == 1 else EMPTY_NEXT
         if "linkareer.com/activity/" in url:
             sid = url.rstrip("/").rsplit("/", 1)[-1]
             path = FIX / f"linkareer_detail_{sid}.html"
             if path.exists():
                 return path.read_text(encoding="utf-8")
             raise FileNotFoundError(f"fixture 없음: {url}")
-        if "kind.krx.co.kr" in url:
-            mkt = (params or {}).get("marketType", "stockMkt")
-            return (FIX / f"kind_{mkt}.html").read_bytes().decode("euc-kr", errors="ignore")
         raise FileNotFoundError(f"fixture 없음: {url}")
 
     def get_json(self, url: str, params: dict | None = None):
@@ -48,7 +44,7 @@ class FixtureHttp:
                 return json.loads(path.read_text(encoding="utf-8"))
             raise FileNotFoundError(f"fixture 없음: {url}")
         if "jasoseol.com/api/v1/employment_companies" in url:
-            return json.loads((FIX / "jasoseol_list.json").read_text(encoding="utf-8")) if page == 1 else []
+            return json.loads((FIX / "jasoseol_filtered.json").read_text(encoding="utf-8")) if page == 1 else []
         if "catch.co.kr" in url:
             name = {1: "catch_list.json", 2: "catch_list_bigco.json"}.get(page)
             return json.loads((FIX / name).read_text(encoding="utf-8")) if name else {"recruitData": [], "intTotalRecordCount": 0}

@@ -2,7 +2,6 @@ from datetime import date
 
 from conftest import NOW
 from recruit import normalize as N
-from recruit.classify import keyword_classify, it_tags
 from recruit.dedupe import merge
 from recruit.models import Division, Posting
 
@@ -63,32 +62,3 @@ def test_force_split_and_existing_update():
     assert len(again) == 2
     m = next(m for m in again if m.sources[0].source == "catch")
     assert m.deadline == date(2026, 12, 5) and m.first_seen == TODAY and m.last_seen == date(2026, 11, 22)
-
-
-def test_it_keywords():
-    assert "개발" in it_tags("백엔드 개발자")
-    assert "데이터·AI" in it_tags("AI엔지니어 신입")
-    assert it_tags("IT영업 신입") == []
-    assert it_tags("디지털마케팅 인턴") == []
-    assert it_tags("경영지원 신입") == []
-
-
-def _m(title, **kw):
-    return merge([], [P("catch", "1", "A사", title, **kw)], TODAY, NO)[0]
-
-
-def test_keyword_classify():
-    m = _m("백엔드 개발 신입"); keyword_classify(m); assert m.it_status == "it"
-    m = _m("IT영업 신입"); keyword_classify(m); assert m.it_status == "unknown"
-    m = _m("물류 신입"); keyword_classify(m); assert m.it_status == "non_it"
-    m = _m("2026 신입 공채", divisions=[Division(name="SW개발"), Division(name="경영지원")])
-    keyword_classify(m)
-    assert m.it_status == "it" and m.it_divisions == ["SW개발"]
-
-
-def test_jasoseol_divisions_override_tags():
-    p = P("jasoseol", "7", "AJ네트웍스", "수시채용 (신입/경력)", job_tags=["IT·인터넷", "영업"],
-          divisions=[Division(name="IT장비 B2B영업 (신입)", is_it=False)])
-    m = merge([], [p], TODAY, NO)[0]
-    keyword_classify(m)
-    assert m.it_status != "it"

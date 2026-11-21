@@ -1,4 +1,7 @@
-"""daily: 수집→병합→분류→대기업 상세 추출→상태 저장. weekly: 주간 Issue 발행."""
+"""daily: 수집(사이트 필터)→병합→마감 처리→상태 저장. weekly: 주간 Issue 발행.
+
+IT 직군·기업 규모·신입/인턴 판정은 각 사이트의 필터 결과를 그대로 따른다 (자체 판정 없음).
+"""
 
 from __future__ import annotations
 
@@ -8,13 +11,9 @@ import os
 from datetime import date, timedelta
 from pathlib import Path
 
-from . import bigco
-from .classify import keyword_classify, llm_classify
 from .collect import CollectResult, collect_all
 from .config import Settings, now_kst, today_kst
 from .dedupe import merge
-from .extract import extract_all
-from .llm import LLM
 from .models import MergedPosting
 from .publish import comment, create_issue, lock_issue, open_alert, renew_interaction_limit
 from .render import render, week_id, week_label, week_range
@@ -26,16 +25,11 @@ LOW_RATIO = 0.3
 BLOCK_DAYS_TO_DISABLE = 2
 
 
-def classify_all(items: list[MergedPosting], llm: LLM, settings: Settings) -> None:
-    for m in items:
-        if m.status != "open":
-            continue
-        bigco.mark(m)
-        # LLM·VLM 판정은 비용이 드므로 한 번 내린 결과를 유지한다
-        if m.it_reason in ("llm", "vlm"):
-            continue
-        keyword_classify(m)
-    llm_classify([m for m in items if m.status == "open"], llm, settings.classify_batch)
+def label(m: MergedPosting) -> None:
+    """필터를 통과한 공고는 모두 IT. 분야는 소스의 IT 부문명(자소설) 또는 IT 직무 분류(링커리어)."""
+    m.it_status, m.it_reason, m.maybe_reason = "it", "source_filter", None
+    m.it_divisions = [d.name for d in m.divisions or [] if d.is_it]
+    m.it_tags = list(m.job_tags)
 
 
 def _health(settings: Settings, res: CollectResult, today: date, dry_run: bool) -> list[str]:
@@ -47,7 +41,6 @@ def _health(settings: Settings, res: CollectResult, today: date, dry_run: bool) 
         if name in res.errors:
             alerts.append(f"- `{name}`: {res.errors[name]}")
             continue
-        # 증분 수집이라 일일 건수는 '신규' 의미에 가깝다. 평균이 충분할 때만 비율 감시
         past = [d["raw"].get(name, 0) for d in days[-7:] if name in d.get("raw", {})]
         avg = sum(past) / len(past) if past else 0
         if avg >= 10 and res.raw.get(name, 0) < avg * LOW_RATIO:
@@ -77,15 +70,17 @@ def daily(settings: Settings, client, offline: bool = False, dry_run: bool = Fal
             log.warning("오프라인 결과로 저장소 data/를 덮지 않도록 dry-run으로 실행 (저장하려면 DATA_DIR 지정)")
             dry_run = True
     health = load_health(settings.data_dir)
-    res = collect_all(settings, client, seen=state.seen_ids(), only=only, disabled=health.get("disabled"))
+    res = collect_all(settings, client, only=only, disabled=health.get("disabled"))
     if not res.postings and res.errors and len(res.errors) == 3:
         log.error("모든 소스 실패: %s", res.errors)
     before = len(state.postings)
     state.postings = merge(state.postings, res.postings, today)
+    seen = {(p.source, p.source_id) for p in res.postings}
+    n_gone = state.close_unseen(seen, res.complete, today)
     state.close_and_prune(today, settings.closed_retention_days)
-    llm = LLM(settings, client)
-    classify_all(state.postings, llm, settings)
-    n_ext = extract_all(state.postings, settings, client, llm)
+    for m in state.postings:
+        if m.status == "open":
+            label(m)
     state.meta["last_collected"] = now_kst().isoformat(timespec="seconds")
     state.meta["last_errors"] = res.errors
     alerts = _health(settings, res, today, dry_run)
@@ -96,9 +91,8 @@ def daily(settings: Settings, client, offline: bool = False, dry_run: bool = Fal
         "errors": res.errors,
         "merged_total": len(state.postings),
         "new_merged": len(state.postings) - before,
-        "extracted": n_ext,
-        "open_it": sum(m.it_status == "it" for m in pub),
-        "open_maybe": sum(m.it_status == "maybe" for m in pub),
+        "closed_unseen": n_gone,
+        "open": len(pub),
     }
     print(json.dumps(summary, ensure_ascii=False))
     if dry_run:
@@ -121,9 +115,8 @@ def select_sections(items: list[MergedPosting], today: date, last_published: dat
     urgent_ids = {m.id for m in urgent}
     new = [m for m in pub if m.it_status == "it" and is_new(m) and m.id not in urgent_ids and m.deadline_type == "date"]
     rolling = [m for m in pub if m.it_status == "it" and is_new(m) and m.deadline_type != "date"]
-    maybe = [m for m in pub if m.it_status == "maybe" and is_new(m)]
     key = lambda m: (m.deadline is None, m.deadline or date.max, m.company)  # noqa: E731
-    return {k: sorted(v, key=key) for k, v in {"urgent": urgent, "new": new, "rolling": rolling, "maybe": maybe}.items()}
+    return {k: sorted(v, key=key) for k, v in {"urgent": urgent, "new": new, "rolling": rolling}.items()}
 
 
 def weekly(settings: Settings, dry_run: bool = False, out: str | None = None, force: bool = False) -> int:

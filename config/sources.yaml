@@ -1,12 +1,22 @@
-# 소스별 on/off와 요청 상한. 차단(403/429)이 반복되면 PR로 enabled: false 처리한다.
+# 소스별 on/off와 사이트 필터. 필터 값은 각 사이트 검색 화면의 필터를 그대로 옮긴 것이다.
+# 매일 필터 결과 전체를 받고, 결과에서 빠진 공고는 마감으로 본다.
 linkareer:
   enabled: true
-  max_list_pages: 50     # 백필 시 상한. 평소에는 이미 본 공고가 나오면 멈춘다
+  max_list_pages: 15   # 20건/페이지. 2026-11-21 기준 110건
+  # https://linkareer.com/list/recruit 필터: 직무 IT/개발, 신입·인턴, 기업형태 대기업(1)·공기업(3)·중견기업(5)
+  filters:
+    categoryIDs: [100003]
+    jobTypes: [NEW, INTERN]
+    orgTypeIDs: [1, 3, 5]
+jasoseol:
+  enabled: true
+  max_list_pages: 5    # 100건/페이지. 2026-11-21 기준 18건
+  # https://jasoseol.com/search 필터: 신입(1)·인턴(3), 대기업·중견기업·공공기관, IT 직무
+  filters:
+    division: [1, 3]
+    business_types: [big_business, middle_market, public_institution]
+    duty_group_ids: [160, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182]
 # 2026-11-21 GitHub Actions IP에서 403(Cloudflare) → 정책상 우회하지 않고 제외. 허용 회신을 받으면 다시 켠다
 catch:
   enabled: false
   max_list_pages: 40
-jasoseol:
-  enabled: true
-  max_list_pages: 10
-# 상세 요청은 Settings.detail_limit(DETAIL_LIMIT)로 전체 합산 제한

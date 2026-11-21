@@ -43,14 +43,6 @@ def cmd_publish(args, settings: Settings) -> int:
     return weekly(settings, dry_run=args.dry_run, out=args.out, force=args.force)
 
 
-def cmd_listed(args, settings: Settings) -> int:
-    from .bigco import update_listed
-
-    n = update_listed(settings, _client(settings))
-    print(f"상장사 {n}개 저장")
-    return 0 if n else 1
-
-
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="recruit")
     ap.add_argument("-v", "--verbose", action="store_true")
@@ -61,7 +53,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--out", default="out/collect")
     p.set_defaults(func=cmd_collect)
 
-    p = sub.add_parser("daily", help="수집→정규화→병합→분류→상세 추출→data/ 갱신")
+    p = sub.add_parser("daily", help="수집(사이트 필터)→병합→마감 처리→data/ 갱신")
     p.add_argument("--sources", nargs="*", default=None)
     p.add_argument("--offline", action="store_true", help="tests/fixtures로 실행 (네트워크 없음)")
     p.add_argument("--dry-run", action="store_true", help="data/를 쓰지 않고 결과 요약만 출력")
@@ -72,9 +64,6 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--out", default=None, help="dry-run 마크다운 저장 경로")
     p.add_argument("--force", action="store_true", help="이번 주 이미 발행했어도 다시 발행")
     p.set_defaults(func=cmd_publish)
-
-    p = sub.add_parser("listed", help="KRX KIND 상장사 목록 갱신")
-    p.set_defaults(func=cmd_listed)
 
     args = ap.parse_args(argv)
     logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO, format="%(levelname)s %(name)s: %(message)s")
