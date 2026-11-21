@@ -1,0 +1,21 @@
+{
+ "days": [
+  {
+   "date": "2026-11-21",
+   "raw": {
+    "linkareer": 110,
+    "jasoseol": 18
+   },
+   "new": {
+    "linkareer": 110,
+    "jasoseol": 18
+   },
+   "errors": {}
+  }
+ ],
+ "disabled": {},
+ "block_streak": {
+  "linkareer": 0,
+  "jasoseol": 0
+ }
+}
