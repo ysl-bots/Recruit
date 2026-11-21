@@ -10,7 +10,7 @@
 | 서버 필터 | `filterBy_<키>=<값>` 반복 파라미터. `jobTypes`, `categoryIDs`, `orgTypeIDs` 동작 | `by_division`, `by_business_types`, `by_duty_group_ids`, `after_end_time` 동작. 접두어 없는 `division` 등은 무시됨 |
 | 페이지 크기 | 20 고정 (`pageSize` 무시) | 100 |
 | 필터 결과 (11/21) | 110건 | 18건 |
-| 회사 | `organizationName` | `name`, `company_group.business_size` |
+| 회사 | `organizationName` | `name` |
 | 마감 | `recruitCloseAt`(epoch ms), `recruitType`(NORMAL / ASAP=채용시 / ALWAYS=상시) | `end_time`(ISO+09:00) |
 | 고용형태 | `jobTypes`(NEW / INTERN …), `RecruitInformation.internTypes`(1 체험형, 2 채용연계형) | `employments[].division`(1 신입, 2 경력, 3 인턴, 4 계약직, 7 교육), `linkage_recruitment` |
 | 직무 | `categories` → `Category`(IT/개발 = 100003, 하위 AI/ML 103007, 데이터분석 103006, DevOps/클라우드/보안 103005, QA 103009 …) | `employments[].duty_group_ids` → `/api/v1/duty-groups`(이름은 `config/jasoseol_duty_groups.json`) |
