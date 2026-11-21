@@ -16,7 +16,3 @@ jasoseol:
     division: [1, 3]
     business_types: [big_business, middle_market, public_institution]
     duty_group_ids: [160, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182]
-# 2026-11-21 GitHub Actions IP에서 403(Cloudflare) → 정책상 우회하지 않고 제외. 허용 회신을 받으면 다시 켠다
-catch:
-  enabled: false
-  max_list_pages: 40

@@ -82,14 +82,11 @@ def _apply(m: MergedPosting, p: Posting, today: date) -> None:
     else:
         m.deadline = m.deadline or p.deadline
         m.start_date = m.start_date or p.start_date
-    m.job_tags = sorted(set(m.job_tags) | set(p.job_tags))
-    m.source_it = m.source_it or p.source_it
-    m.company_category = m.company_category or p.company_category
-    # 구조화 부문: 자소설(직무그룹 기반 is_it 포함) > 캐치
-    if p.divisions and (m.divisions_from != "source" or m.divisions_source in (None, p.source) or p.source == "jasoseol"):
+    m.job_tags = list(dict.fromkeys([*m.job_tags, *p.job_tags]))
+    # 모집 부문은 자소설만 제공한다
+    if p.divisions:
         m.divisions = [d.model_copy() for d in p.divisions]
-        m.divisions_from = "source"
-        m.divisions_source = p.source
+        m.it_divisions = [d.name for d in p.divisions if d.is_it]
     m.last_seen = today
     m.status = "open"
 

@@ -5,7 +5,7 @@ from conftest import NOW, read
 from recruit import normalize as N
 from recruit.dedupe import merge
 from recruit.models import Posting
-from recruit.pipeline import label, select_sections
+from recruit.pipeline import select_sections
 from recruit.render import esc, render, week_id, week_label
 from recruit.sources import jasoseol, linkareer
 from recruit.state import State
@@ -32,14 +32,15 @@ def test_jasoseol_filter_params():
 
 
 def test_filtered_fixtures():
-    items, ids = linkareer.parse_list(read("linkareer_recruit_filtered.html"), NOW)
-    kept = [p for p in items if p]
-    assert len(ids) == 20 and kept and all(p.source_it and p.job_tags for p in kept)
-    assert "전체" not in {t for p in kept for t in p.job_tags}
-    groups = jasoseol.it_duty_groups({"duty_group_ids": [160, *range(164, 183)]})
-    items, ids = jasoseol.parse_list(json.loads(read("jasoseol_filtered.json")), NOW, groups)
-    kept = [p for p in items if p]
-    assert len(ids) == 18 and kept and any(d.is_it for p in kept for d in p.divisions)
+    # 필터 결과는 하나도 버리지 않는다
+    items = linkareer.parse_list(read("linkareer_recruit_filtered.html"), NOW)
+    assert len(items) == 20 and all(p.job_tags for p in items)
+    assert all(p.url.startswith("https://linkareer.com/activity/") for p in items)
+    assert "전체" not in {t for p in items for t in p.job_tags}
+    assert {p.employment for p in items} <= {"신입", "채용연계형 인턴", "체험형 인턴", "인턴"}
+    items = jasoseol.parse_list(json.loads(read("jasoseol_filtered.json")), NOW, {160, *range(164, 183)})
+    assert len(items) == 18 and all(p.url.startswith("https://jasoseol.com/recruit/") for p in items)
+    assert any(d.is_it for p in items for d in p.divisions)
 
 
 def test_close_unseen():
@@ -60,8 +61,6 @@ def test_sections_and_render():
         P("linkareer", "2", "B사", "데이터 | 인턴", deadline=date(2026, 12, 20)),
         P("linkareer", "3", "C사", "상시 개발자", deadline=None, deadline_type="rolling"),
     ], date(2026, 11, 20), NO)
-    for m in ms:
-        label(m)
     sec = select_sections(ms, TODAY, None, 7)
     assert [len(sec[k]) for k in ("urgent", "new", "rolling")] == [1, 1, 1]
     for m in ms:
@@ -70,15 +69,12 @@ def test_sections_and_render():
     assert [len(sec2[k]) for k in ("urgent", "new", "rolling")] == [1, 0, 0]
     body, extra = render(sec, TODAY, {"jasoseol": "차단"}, "https://x/w.json", "https://x/p.json")
     assert "데이터 \\| 인턴" in body and "백엔드/서버개발" in body and "수집 실패" in body and not extra
-    assert "IT 관련 가능성" not in body
     assert week_id(TODAY) == "2026-W48"
 
 
 def test_render_split_long():
     ms = merge([], [P("linkareer", str(i), f"회사{i}", "개발자 " + "가" * 300, deadline=date(2026, 12, 20)) for i in range(400)],
                date(2026, 11, 20), NO)
-    for m in ms:
-        label(m)
     body, extra = render(select_sections(ms, TODAY, None, 7), TODAY, {}, "https://x/w", "https://x/p")
     assert len(body) <= 65536 and extra and all(len(c) <= 65536 for c in extra)
 

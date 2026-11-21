@@ -12,6 +12,7 @@ from datetime import date, timedelta
 from pathlib import Path
 
 from .collect import CollectResult, collect_all
+from .sources import SOURCES
 from .config import Settings, now_kst, today_kst
 from .dedupe import merge
 from .models import MergedPosting
@@ -25,19 +26,12 @@ LOW_RATIO = 0.3
 BLOCK_DAYS_TO_DISABLE = 2
 
 
-def label(m: MergedPosting) -> None:
-    """필터를 통과한 공고는 모두 IT. 분야는 소스의 IT 부문명(자소설) 또는 IT 직무 분류(링커리어)."""
-    m.it_status, m.it_reason, m.maybe_reason = "it", "source_filter", None
-    m.it_divisions = [d.name for d in m.divisions or [] if d.is_it]
-    m.it_tags = list(m.job_tags)
-
-
 def _health(settings: Settings, res: CollectResult, today: date, dry_run: bool) -> list[str]:
     """소스별 이상 감지. 반환은 alert 메시지들."""
     health = load_health(settings.data_dir)
     days = health.setdefault("days", [])
     alerts = []
-    for name in ("linkareer", "jasoseol", "catch"):
+    for name in SOURCES:
         if name in res.errors:
             alerts.append(f"- `{name}`: {res.errors[name]}")
             continue
@@ -47,7 +41,7 @@ def _health(settings: Settings, res: CollectResult, today: date, dry_run: bool) 
             alerts.append(f"- `{name}`: 원본 {res.raw.get(name, 0)}건 (7일 평균 {avg:.0f}건의 30% 미만)")
     # 차단 연속 일수 → 자동 off
     streak = health.setdefault("block_streak", {})
-    for name in ("linkareer", "jasoseol", "catch"):
+    for name in SOURCES:
         streak[name] = streak.get(name, 0) + 1 if name in res.blocked else 0
         if streak[name] >= BLOCK_DAYS_TO_DISABLE and name not in health.setdefault("disabled", {}):
             health["disabled"][name] = f"{today} 403/429 {streak[name]}일 연속"
@@ -71,16 +65,13 @@ def daily(settings: Settings, client, offline: bool = False, dry_run: bool = Fal
             dry_run = True
     health = load_health(settings.data_dir)
     res = collect_all(settings, client, only=only, disabled=health.get("disabled"))
-    if not res.postings and res.errors and len(res.errors) == 3:
+    if not res.postings and len(res.errors) == len(SOURCES):
         log.error("모든 소스 실패: %s", res.errors)
     before = len(state.postings)
     state.postings = merge(state.postings, res.postings, today)
     seen = {(p.source, p.source_id) for p in res.postings}
     n_gone = state.close_unseen(seen, res.complete, today)
     state.close_and_prune(today, settings.closed_retention_days)
-    for m in state.postings:
-        if m.status == "open":
-            label(m)
     state.meta["last_collected"] = now_kst().isoformat(timespec="seconds")
     state.meta["last_errors"] = res.errors
     alerts = _health(settings, res, today, dry_run)
@@ -111,10 +102,10 @@ def select_sections(items: list[MergedPosting], today: date, last_published: dat
     def is_new(m: MergedPosting) -> bool:
         return m.first_seen > since and not m.published_weeks
 
-    urgent = [m for m in pub if m.it_status == "it" and m.deadline and 0 <= (m.deadline - today).days <= urgent_days]
+    urgent = [m for m in pub if m.deadline and 0 <= (m.deadline - today).days <= urgent_days]
     urgent_ids = {m.id for m in urgent}
-    new = [m for m in pub if m.it_status == "it" and is_new(m) and m.id not in urgent_ids and m.deadline_type == "date"]
-    rolling = [m for m in pub if m.it_status == "it" and is_new(m) and m.deadline_type != "date"]
+    new = [m for m in pub if is_new(m) and m.id not in urgent_ids and m.deadline_type == "date"]
+    rolling = [m for m in pub if is_new(m) and m.deadline_type != "date"]
     key = lambda m: (m.deadline is None, m.deadline or date.max, m.company)  # noqa: E731
     return {k: sorted(v, key=key) for k, v in {"urgent": urgent, "new": new, "rolling": rolling}.items()}
 

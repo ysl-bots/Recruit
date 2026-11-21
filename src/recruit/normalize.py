@@ -81,35 +81,6 @@ def to_date(value) -> date | None:
     return dt.date() if dt else None
 
 
-_MD = re.compile(r"(?:(\d{4})[./-])?(\d{1,2})[./-](\d{1,2})")
-_DDAY = re.compile(r"D\s*-\s*(\d+)", re.I)
-
-
-def parse_deadline_text(text: str, today: date) -> tuple[date | None, str]:
-    """'~11.30(월)', 'D-3', '상시채용', '채용시 마감' 같은 표기를 (date, deadline_type)으로."""
-    t = (text or "").strip()
-    if not t:
-        return None, "date"
-    if "상시" in t:
-        return None, "rolling"
-    if "채용시" in t or "채용 시" in t:
-        return None, "until_filled"
-    m = _DDAY.search(t)
-    if m:
-        return date.fromordinal(today.toordinal() + int(m.group(1))), "date"
-    m = _MD.search(t)
-    if m:
-        y, mo, d = m.groups()
-        if y:
-            return date(int(y), int(mo), int(d)), "date"
-        # 연도가 없으면 오늘 기준 가장 가까운 미래(오늘 포함)
-        cand = date(today.year, int(mo), int(d))
-        if cand < today:
-            cand = date(today.year + 1, int(mo), int(d))
-        return cand, "date"
-    return None, "date"
-
-
 def employment(*texts: str) -> str:
     """제목·태그에서 고용형태를 판정한다. 경력 전용이면 '기타'."""
     t = " ".join(x for x in texts if x)

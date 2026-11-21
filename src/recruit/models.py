@@ -1,4 +1,7 @@
-"""데이터 모델. Posting은 소스 1개의 정규화된 공고, MergedPosting은 소스 간 병합 결과."""
+"""데이터 모델. Posting은 소스 1개의 정규화된 공고, MergedPosting은 소스 간 병합 결과.
+
+대상 선별(신입·인턴 / IT 직군 / 기업 규모)은 사이트 필터가 하므로, 여기 들어온 공고는 모두 발행 대상이다.
+"""
 
 from __future__ import annotations
 
@@ -7,17 +10,18 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
-SourceName = Literal["linkareer", "jasoseol", "catch"]
+SourceName = Literal["linkareer", "jasoseol"]
 Employment = Literal["신입", "채용연계형 인턴", "체험형 인턴", "인턴", "기타"]
 DeadlineType = Literal["date", "rolling", "until_filled"]
-ItStatus = Literal["it", "maybe", "non_it", "unknown"]
 
-SOURCE_LABEL = {"catch": "캐치", "jasoseol": "자소설", "linkareer": "링커리어"}
-# 대표값 우선순위
-SOURCE_PRIORITY: tuple[SourceName, ...] = ("catch", "jasoseol", "linkareer")
+SOURCE_LABEL = {"jasoseol": "자소설", "linkareer": "링커리어"}
+# 대표값(제목·마감일 등) 우선순위. 자소설은 부문별 구조화 데이터가 있어 앞에 둔다
+SOURCE_PRIORITY: tuple[SourceName, ...] = ("jasoseol", "linkareer")
 
 
 class Division(BaseModel):
+    """모집 부문 (자소설 employments). is_it: 필터에 쓴 IT 직무그룹에 속하는 부문."""
+
     name: str
     is_it: bool = False
     employment: Employment | None = None
@@ -30,17 +34,12 @@ class Posting(BaseModel):
     company_raw: str
     company: str = ""
     title: str
-    job_tags: list[str] = Field(default_factory=list)
-    employment: Employment = "기타"
+    job_tags: list[str] = Field(default_factory=list)  # 소스의 IT 직무 분류명 (분야 칸)
+    employment: Employment = "기타"  # 표시용 라벨
     start_date: date | None = None
     deadline: date | None = None
     deadline_type: DeadlineType = "date"
-    # 소스가 구조화해 제공하는 모집 부문 (자소설 employments, 캐치 AssignedTaskNameListString)
     divisions: list[Division] = Field(default_factory=list)
-    # 소스가 주는 IT 판정 근거 (자소설 IT duty group, 링커리어 IT 카테고리)
-    source_it: bool = False
-    # 기업 분류 힌트 (캐치 PopularCategory 등)
-    company_category: str | None = None
     collected_at: datetime
 
 
@@ -61,24 +60,9 @@ class MergedPosting(BaseModel):
     employment: Employment = "기타"
     sources: list[SourceLink] = Field(default_factory=list)
     job_tags: list[str] = Field(default_factory=list)
-    source_it: bool = False
-    company_category: str | None = None
-    is_listed: bool = False
-    parent_company: str | None = None
-    is_bigco: bool = False
     divisions: list[Division] | None = None
-    divisions_from: Literal["source", "vlm"] | None = None
-    divisions_source: str | None = None
-    it_divisions: list[str] = Field(default_factory=list)
-    it_status: ItStatus = "unknown"
-    it_tags: list[str] = Field(default_factory=list)
-    it_reason: str | None = None
-    maybe_reason: str | None = None
-    extract_attempted: bool = False
+    it_divisions: list[str] = Field(default_factory=list)  # divisions 중 is_it 부문명
     first_seen: date
     last_seen: date
     published_weeks: list[str] = Field(default_factory=list)
     status: Literal["open", "closed"] = "open"
-
-    def source_ids(self) -> set[tuple[str, str]]:
-        return {(s.source, s.source_id) for s in self.sources}

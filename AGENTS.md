@@ -1,9 +1,9 @@
 # AGENTS.md — 코드 리뷰·작업 지침
 
 ## 프로젝트 개요
-- 채용 사이트(링커리어·자소설닷컴·캐치)의 신입·인턴 공고를 매일 수집·병합하고, IT 공고만 주간 Issue로 `Recruit-Subscribe-IT`에 발행합니다. 설계는 [SPEC.md](SPEC.md).
-- 파이프라인: `collect(사이트 필터 결과 전체) → dedupe.merge → state.close_unseen → pipeline.label → state.save`, 주간 `pipeline.weekly → render → publish`.
-- IT 직군·기업 규모·고용형태는 사이트 필터(`config/sources.yaml`)를 그대로 따릅니다. 봇 자체 키워드·LLM 판정을 다시 넣는 변경은 근거를 확인합니다.
+- 채용 사이트(링커리어·자소설닷컴)의 신입·인턴 / IT 직군 / 대기업·중견·공기업 공고를 사이트 필터로 매일 수집·병합하고, 주간 Issue로 `Recruit-Subscribe-IT`에 발행합니다. 설계는 [SPEC.md](SPEC.md).
+- 파이프라인: `collect(사이트 필터 결과 전체) → dedupe.merge → state.close_unseen → state.save`, 주간 `pipeline.weekly → render → publish`.
+- 대상 선별(IT 직군·기업 규모·고용형태)은 사이트 필터(`config/sources.yaml`)에만 맡깁니다. 수집기가 필터 결과를 자체 규칙으로 버리거나, 키워드·LLM 판정을 다시 넣는 변경은 🔴.
 - Python 3.12, `pytest`. 테스트는 네트워크 없이 `tests/fixtures`와 `offline.FixtureHttp`로 돌아가야 합니다.
 
 ## 리뷰 원칙
@@ -12,7 +12,7 @@
 - `data/`만 바뀐 `chore(state): …` 봇 커밋은 리뷰하지 않습니다.
 
 ## 중점 검토 항목
-- **수집 정책**: 모든 요청은 `HttpClient`(robots.txt 확인, 2초 간격, 상한, 403/429 즉시 중단)를 거쳐야 합니다. robots가 막은 경로(예: 캐치 `/controls`)를 호출하거나 UA 위장·우회를 추가하면 🔴.
+- **수집 정책**: 모든 요청은 `HttpClient`(robots.txt 확인, 2초 간격, 상한, 403/429 즉시 중단)를 거쳐야 합니다. robots가 막은 경로를 호출하거나, UA 위장·프록시·실행 위치 변경 같은 차단 우회를 추가하면 🔴.
 - **상태 호환성**: `state.json`은 운영 데이터입니다. 모델 필드 추가는 기본값이 있어야 하고 의미 변경은 마이그레이션이 필요합니다.
 - **병합**: `dedupe.similar` 변경은 오병합(서로 다른 공고가 사라짐)을 더 심각하게 봅니다. 양성·음성 회귀 테스트가 있어야 합니다.
 - **마감 처리**: `close_unseen`은 끝까지 읽은(`complete`) 소스만 기준으로 삼아야 합니다. 실패·상한 도달 소스 때문에 열린 공고가 닫히면 🔴.

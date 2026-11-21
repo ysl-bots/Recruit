@@ -33,7 +33,7 @@ def source_names() -> str:
     from .config import load_yaml
 
     cfg = load_yaml("sources.yaml")
-    labels = {"linkareer": "링커리어", "jasoseol": "자소설닷컴", "catch": "캐치"}
+    labels = {"linkareer": "링커리어", "jasoseol": "자소설닷컴"}
     return " · ".join(v for k, v in labels.items() if cfg.get(k, {}).get("enabled", True))
 
 
@@ -54,7 +54,7 @@ def deadline_cell(m: MergedPosting, today: date) -> str:
 
 
 def field_cell(m: MergedPosting) -> str:
-    vals = m.it_divisions or m.it_tags
+    vals = m.it_divisions or m.job_tags
     s = ", ".join(vals[:4]) + (f" 외 {len(vals) - 4}" if len(vals) > 4 else "")
     return esc(s) or "-"
 
@@ -67,21 +67,19 @@ def links_cell(m: MergedPosting) -> str:
     return " · ".join(out)
 
 
-def table(items: list[MergedPosting], today: date, reason: bool = False) -> list[str]:
-    head = "| 마감 | 회사 | 공고 | 유형 | 분야 | 링크 |" + (" 사유 |" if reason else "")
-    sep = "| --- | --- | --- | --- | --- | --- |" + (" --- |" if reason else "")
+def table(items: list[MergedPosting], today: date) -> list[str]:
+    head = "| 마감 | 회사 | 공고 | 유형 | 분야 | 링크 |"
+    sep = "| --- | --- | --- | --- | --- | --- |"
     rows = [head, sep]
     for m in items:
         row = f"| {deadline_cell(m, today)} | {esc(m.company_name or m.company)} | {esc(m.title)} | {m.employment} | {field_cell(m)} | {links_cell(m)} |"
-        if reason:
-            row += f" {esc(m.maybe_reason or '-')} |"
         rows.append(row)
     return rows
 
 
 def render(sections: dict[str, list[MergedPosting]], today: date, failed: dict[str, str], json_url: str, all_url: str) -> tuple[str, list[str]]:
     """(본문, 이어 붙일 댓글들)."""
-    names = {"catch": "캐치", "jasoseol": "자소설닷컴", "linkareer": "링커리어"}
+    names = {"jasoseol": "자소설닷컴", "linkareer": "링커리어"}
     head = [
         f"> 수집 소스: {source_names()} | 수집일 {today:%Y-%m-%d}",
         "> 공고 원문은 각 링크에서 확인하세요. 봇이 수집한 정보는 틀릴 수 있습니다.",

@@ -1,7 +1,7 @@
 """상태 파일.
 
-- data/state.json   : 내부 상태. 모든 병합 공고(비IT 포함, 마감 후 일정 기간 보존) + 메타(발행 이력, 소스 상태)
-- data/postings.json: 에이전트용. 열린 IT·maybe 공고만
+- data/state.json   : 내부 상태. 모든 병합 공고(마감 후 일정 기간 보존) + 메타(발행 이력, 소스 상태)
+- data/postings.json: 에이전트용. 열린 공고 전체
 - data/health.json  : 소스별 일일 수집 기록 (장애 감지)
 """
 
@@ -14,7 +14,6 @@ from pathlib import Path
 
 from .models import MergedPosting
 
-ROLLING_MAX_DAYS = 60  # 상시·채용시 마감 공고는 최초 수집 후 이 기간이 지나면 닫는다
 
 
 @dataclass
@@ -38,13 +37,6 @@ class State:
         public = [m.model_dump(mode="json") for m in sorted(open_public(self.postings), key=_deadline_key)]
         _write(data_dir / "postings.json", {"updated": self.meta.get("last_collected"), "count": len(public), "postings": public})
 
-    def seen_ids(self) -> dict[str, set[str]]:
-        out: dict[str, set[str]] = {}
-        for m in self.postings:
-            for s in m.sources:
-                out.setdefault(s.source, set()).add(s.source_id)
-        return out
-
     def close_unseen(self, seen: set[tuple[str, str]], complete: set[str], today: date) -> int:
         """끝까지 읽은 소스의 결과에서 빠진 공고는 마감(또는 필터 조건에서 벗어남)으로 본다.
         병합 공고는 모든 소스 링크가 '빠짐'일 때만 닫는다. 실패·미완료 소스의 링크는 판단하지 않는다(살아있다고 본다)."""
@@ -63,9 +55,8 @@ class State:
         keep = []
         for m in self.postings:
             if m.status == "open":
+                # 보통은 사이트 결과에서 빠져 close_unseen으로 닫힌다. 그날 수집이 실패해도 마감일이 지나면 닫는다
                 if m.deadline and m.deadline < today:
-                    m.status = "closed"
-                elif m.deadline is None and (today - m.first_seen).days > ROLLING_MAX_DAYS:
                     m.status = "closed"
             # 닫힌 공고는 보존 기간 동안 남겨 같은 공고가 신규로 다시 잡히지 않게 한다
             ref = m.deadline or m.last_seen
@@ -76,7 +67,7 @@ class State:
 
 
 def open_public(items: list[MergedPosting]) -> list[MergedPosting]:
-    return [m for m in items if m.status == "open" and m.it_status in ("it", "maybe")]
+    return [m for m in items if m.status == "open"]
 
 
 def _deadline_key(m: MergedPosting):

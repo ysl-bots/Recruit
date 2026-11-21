@@ -1,5 +1,5 @@
 # 요청을 받아 제외할 소스·회사·공고. 예:
-# sources: [catch]
+# sources: [jasoseol]
 # companies: [○○주식회사]
 # postings: [{source: linkareer, source_id: "123456"}]
 sources: []

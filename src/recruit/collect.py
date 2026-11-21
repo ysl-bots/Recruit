@@ -54,7 +54,11 @@ def collect_all(
             log.warning("%s: 차단 반복으로 자동 off 상태 (data/health.json disabled에서 지우면 재개)", name)
             res.errors[name] = "자동 off (차단 반복)"
             continue
-        src = cls(client, now.date(), now, max_pages=int(sc.get("max_list_pages", 10)), filters=sc.get("filters"))
+        if not sc.get("filters"):
+            # 필터 없이 돌면 전체 공고가 들어오므로 실행하지 않는다
+            res.errors[name] = "sources.yaml에 filters 없음"
+            continue
+        src = cls(client, now, max_pages=int(sc.get("max_list_pages", 10)), filters=sc["filters"])
         try:
             items = src.collect()
         except Blocked as exc:
@@ -72,10 +76,10 @@ def collect_all(
             continue
         items = [p for p in items if not blocklisted(p)]
         res.counts[name] = len(items)
-        res.raw[name] = getattr(src, "raw_count", 0)
-        if res.raw[name] == 0:
+        res.raw[name] = src.raw_count
+        if src.raw_count == 0:
             res.errors[name] = "목록 0건 (파서 깨짐 의심)"
-        elif getattr(src, "complete", False):
+        elif src.complete:
             res.complete.add(name)
         res.postings += items
         log.info("%s: %d건", name, len(items))
