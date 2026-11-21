@@ -61,6 +61,8 @@ def field_cell(m: MergedPosting) -> str:
 
 def links_cell(m: MergedPosting) -> str:
     out = []
+    if m.apply_url and _SAFE_URL.match(m.apply_url):
+        out.append(f"[**공채 홈페이지**]({m.apply_url})")
     for s in m.sources:
         if _SAFE_URL.match(s.url):
             out.append(f"[{SOURCE_LABEL[s.source]}]({s.url})")

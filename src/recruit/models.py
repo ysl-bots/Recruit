@@ -40,6 +40,7 @@ class Posting(BaseModel):
     deadline: date | None = None
     deadline_type: DeadlineType = "date"
     divisions: list[Division] = Field(default_factory=list)
+    apply_url: str | None = None  # 공채(지원) 홈페이지
     collected_at: datetime
 
 
@@ -62,6 +63,9 @@ class MergedPosting(BaseModel):
     job_tags: list[str] = Field(default_factory=list)
     divisions: list[Division] | None = None
     it_divisions: list[str] = Field(default_factory=list)  # divisions 중 is_it 부문명
+    apply_url: str | None = None  # 공채(지원) 홈페이지. 자소설 목록 > 링커리어 상세 순
+    homepage_url: str | None = None  # 회사 홈페이지 (링커리어 상세)
+    detail_checked: bool = False  # 링커리어 상세를 이미 조회했는지 (공고당 1회만 요청)
     first_seen: date
     last_seen: date
     published_weeks: list[str] = Field(default_factory=list)

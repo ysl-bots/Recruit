@@ -87,6 +87,9 @@ def _apply(m: MergedPosting, p: Posting, today: date) -> None:
     if p.divisions:
         m.divisions = [d.model_copy() for d in p.divisions]
         m.it_divisions = [d.name for d in p.divisions if d.is_it]
+    # 공채 홈페이지: 자소설 목록 값이 있으면 그것을 쓴다 (링커리어는 상세 조회로 채운다)
+    if p.apply_url:
+        m.apply_url = p.apply_url
     m.last_seen = today
     m.status = "open"
 

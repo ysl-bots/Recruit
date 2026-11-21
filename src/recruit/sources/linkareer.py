@@ -101,9 +101,20 @@ def parse_list(html: str, now) -> list[Posting]:
     return items
 
 
+def parse_detail(html: str, source_id: str) -> tuple[str | None, str | None]:
+    """상세 페이지에서 (지원 URL, 회사 홈페이지). applyDetail은 지원 방법 안내문·이메일일 수도 있어 URL일 때만 쓴다."""
+    act = apollo_state(html).get(f"Activity:{source_id}")
+    if not act:
+        raise ValueError(f"Activity:{source_id} 없음 (페이지 구조 변경 가능성)")
+    return N.clean_url(act.get("applyDetail")), N.clean_url(act.get("homepageURL"))
+
+
 class Linkareer(Source):
     name = "linkareer"
     page_size = 20
 
     def fetch_page(self, page: int) -> list[Posting]:
         return parse_list(self.client.get_text(list_url(page, self.filters)), self.now)
+
+    def fetch_detail(self, source_id: str) -> tuple[str | None, str | None]:
+        return parse_detail(self.client.get_text(f"{BASE}/activity/{source_id}"), source_id)

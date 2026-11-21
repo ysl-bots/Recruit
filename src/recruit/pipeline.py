@@ -13,7 +13,7 @@ from pathlib import Path
 
 from .collect import CollectResult, collect_all
 from .sources import SOURCES
-from .config import Settings, now_kst, today_kst
+from .config import Settings, load_yaml, now_kst, today_kst
 from .dedupe import merge
 from .models import MergedPosting
 from .publish import comment, create_issue, lock_issue, open_alert, renew_interaction_limit, sync_public
@@ -24,6 +24,36 @@ log = logging.getLogger(__name__)
 
 LOW_RATIO = 0.3
 BLOCK_DAYS_TO_DISABLE = 2
+
+
+def fill_apply_urls(items: list[MergedPosting], client, now, limit: int) -> int:
+    """공채 홈페이지가 없는 열린 공고 중 링커리어 링크가 있는 것만 상세를 한 번 조회한다.
+    자소설 목록에 URL이 있으면 요청하지 않는다. 차단되면 즉시 멈추고, 그 밖의 실패는 다음 날 다시 시도한다."""
+    from .http import Blocked, RobotsDisallowed
+    from .sources.linkareer import Linkareer
+
+    src = Linkareer(client, now)
+    done = 0
+    for m in items:
+        if done >= limit:
+            log.info("상세 조회 상한(%d)에 도달. 나머지는 다음 실행에서 조회", limit)
+            break
+        if m.status != "open" or m.apply_url or m.detail_checked:
+            continue
+        link = next((x for x in m.sources if x.source == "linkareer"), None)
+        if link is None:
+            continue
+        try:
+            m.apply_url, m.homepage_url = src.fetch_detail(link.source_id)
+        except (Blocked, RobotsDisallowed) as exc:
+            log.error("링커리어 상세 조회 중단: %s", exc)
+            break
+        except Exception as exc:  # noqa: BLE001 - 한 건 실패는 건너뛰고 다음 날 재시도
+            log.warning("링커리어 상세 실패 %s: %s", link.source_id, exc)
+            continue
+        m.detail_checked = True
+        done += 1
+    return done
 
 
 def _health(settings: Settings, res: CollectResult, today: date, dry_run: bool) -> list[str]:
@@ -72,6 +102,8 @@ def daily(settings: Settings, client, offline: bool = False, dry_run: bool = Fal
     seen = {(p.source, p.source_id) for p in res.postings}
     n_gone = state.close_unseen(seen, res.complete, today)
     state.close_and_prune(today, settings.closed_retention_days)
+    detail_limit = int(load_yaml("sources.yaml").get("linkareer", {}).get("max_detail", 150))
+    n_detail = fill_apply_urls(state.postings, client, now_kst(), detail_limit) if "linkareer" not in res.errors else 0
     state.meta["last_collected"] = now_kst().isoformat(timespec="seconds")
     state.meta["last_errors"] = res.errors
     alerts = _health(settings, res, today, dry_run)
@@ -83,17 +115,20 @@ def daily(settings: Settings, client, offline: bool = False, dry_run: bool = Fal
         "merged_total": len(state.postings),
         "new_merged": len(state.postings) - before,
         "closed_unseen": n_gone,
+        "detail_fetched": n_detail,
         "open": len(pub),
     }
     print(json.dumps(summary, ensure_ascii=False))
     if dry_run:
         return 0
     state.save(settings.data_dir)
-    if not offline:
+    # 외부 출력(구독 저장소 업로드·alert)은 Actions에서만. 로컬 실행이 공개 데이터를 덮지 않게 한다
+    in_actions = os.environ.get("GITHUB_ACTIONS") == "true" and not offline
+    if in_actions:
         failed = sync_public(settings.github_token, settings.issue_repo, settings.data_dir, ["postings.json"], f"chore(data): postings {today}")
         if failed:
             alerts.append(f"- 공개 데이터 업로드 실패: {', '.join(failed)} (ISSUE_TOKEN Contents 권한 확인)")
-    if alerts and not offline:
+    if alerts and in_actions:
         token = os.environ.get("ALERT_TOKEN") or os.environ.get("GITHUB_TOKEN") or settings.github_token
         open_alert(token, settings.alert_repo, "[alert] 수집 이상 감지", f"{today} 수집 결과\n\n" + "\n".join(alerts))
     return 0

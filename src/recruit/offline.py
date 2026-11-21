@@ -27,6 +27,11 @@ class FixtureHttp:
         page = self._page(url, params)
         if "linkareer.com/list/recruit" in url:
             return (FIX / "linkareer_recruit_filtered.html").read_text(encoding="utf-8") if page == 1 else EMPTY_NEXT
+        if "linkareer.com/activity/" in url:
+            sid = url.rstrip("/").rsplit("/", 1)[-1]
+            path = FIX / f"linkareer_detail_{sid}.html"
+            if path.exists():
+                return path.read_text(encoding="utf-8")
         raise FileNotFoundError(f"fixture 없음: {url}")
 
     def get_json(self, url: str, params: dict | None = None):

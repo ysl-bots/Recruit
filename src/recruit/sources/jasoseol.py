@@ -66,6 +66,7 @@ def parse_item(x: dict, now, filter_duties: set[int]) -> Posting:
         deadline=N.to_date(x.get("end_time")),
         deadline_type="date" if x.get("end_time") else "rolling",
         divisions=divisions,
+        apply_url=N.clean_url(x.get("employment_page_url")),
         collected_at=now,
     )
 

@@ -24,7 +24,7 @@ divisions 필드가 있으면 내 직무와 맞는 부문만 골라줘.
 - `data/postings.json`: 지금 열려 있는 공고 전체 (매일 갱신)
 - `data/weekly/YYYY-Www.json`: 해당 주 Issue에 실린 공고
 
-주요 필드: `company_name`, `title`, `deadline`, `deadline_type`(date/rolling/until_filled), `employment`, `job_tags`(사이트 IT 직무 분류), `divisions`(모집 부문, 자소설만), `it_divisions`, `sources`(원문 링크).
+주요 필드: `company_name`, `title`, `deadline`, `deadline_type`(date/rolling/until_filled), `employment`, `job_tags`(사이트 IT 직무 분류), `divisions`(모집 부문, 자소설만), `it_divisions`, `apply_url`(공채 홈페이지), `sources`(원문 링크).
 
 ## 주의
 - 봇이 수집한 정보는 틀릴 수 있습니다. 지원 전 반드시 원문을 확인하세요.

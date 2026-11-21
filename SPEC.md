@@ -33,6 +33,7 @@
 - 필터: `categoryIDs=100003`(IT/개발), `jobTypes=NEW,INTERN`, `orgTypeIDs=1,3,5`(대기업·공기업·중견기업)
 - 파싱: 페이지에 내장된 `__NEXT_DATA__` → `__APOLLO_STATE__` → `ROOT_QUERY.activities(…).nodes`. 페이지당 20건이다.
 - 규모(2026-11-21): 110건
+- 상세 `/activity/{id}`: 공채 홈페이지가 없는 공고만 **공고당 1회** 조회해 `applyDetail`·`homepageURL`을 얻는다. 실행당 상한 `max_detail`(150). 차단되면 바로 멈추고, 그 밖의 실패는 다음 날 다시 시도한다.
 
 ### 자소설닷컴
 - 요청: `https://jasoseol.com/api/v1/employment_companies?per_page=100&page=N&by_<키>=<쉼표 목록>&after_end_time=<오늘>`
@@ -59,6 +60,7 @@
 | employment | 표시용 라벨: 신입 / 채용연계형 인턴 / 체험형 인턴 / 인턴 |
 | start_date, deadline, deadline_type | 접수 시작일, 마감일, `date` / `rolling`(상시) / `until_filled`(채용시 마감) |
 | divisions | 모집 부문(자소설만). `is_it`는 필터의 직무그룹에 속한 부문 |
+| apply_url | 공채(지원) 홈페이지. 자소설은 목록의 `employment_page_url`, 링커리어는 상세의 `applyDetail`(URL일 때만). `utm_*` 제거 |
 
 ### MergedPosting (병합 공고)
 | 필드 | 설명 |
@@ -67,6 +69,7 @@
 | company, company_name, title, deadline, employment … | 대표값. 자소설 → 링커리어 순으로 우선 |
 | sources | 병합된 모든 소스 링크 |
 | job_tags, divisions, it_divisions | 소스 분류 합집합, 자소설 부문, 그중 IT 부문명 |
+| apply_url, homepage_url, detail_checked | 공채 홈페이지(자소설 목록 > 링커리어 상세), 회사 홈페이지(링커리어), 링커리어 상세 조회 여부 |
 | first_seen, last_seen | 최초·최근 수집일 (신규 판정 기준) |
 | published_weeks | 실린 주차 (재등장 판정) |
 | status | `open` / `closed` |
@@ -111,7 +114,7 @@
 
 - 표 칸: 마감 / 회사 / 공고 / 유형 / 분야 / 링크
   - **분야**: 자소설 IT 부문명이 있으면 그것을, 없으면 소스 직무 분류를 쓴다.
-  - **링크**: 병합된 모든 소스 링크를 건다.
+  - **링크**: 공채 홈페이지(있을 때, https만)와 병합된 모든 소스 링크를 건다.
 - 상단에 면책 문구, 수집일, 최근 7일 내 수집에 실패한 소스를 표시한다.
 - 외부 텍스트는 마크다운 이스케이프하고, 링크는 https만 허용한다.
 - 본문이 65,000자를 넘으면 표를 행 단위로 잘라 댓글로 이어 붙인다.
@@ -122,12 +125,13 @@
 
 | 워크플로 | 시각 (KST) | 내용 |
 |---|---|---|
-| `collect.yml` | 매일 07:23 | `recruit daily` → `data/` 커밋. 이상이 있으면 이 저장소에 `alert` Issue |
+| `collect.yml` | 매일 07:23 | `recruit daily` → `data/` 커밋, 구독 저장소에 `postings.json` 업로드. 이상이 있으면 이 저장소에 `alert` Issue |
 | `publish.yml` | 월 08:17 | `recruit publish` → Issue 발행, `data/` 커밋 |
 | `test.yml` | PR·push | pytest + fixture로 오프라인 파이프라인 실행 |
 
 - 세 워크플로 모두 `concurrency: recruit-state`로 상태 파일 동시 수정을 막는다.
 - 수동 실행(`workflow_dispatch`)은 기본값이 dry_run이다.
+- 구독 저장소 업로드와 alert는 Actions(`GITHUB_ACTIONS=true`)에서만 한다. 로컬 실행이 공개 데이터를 덮지 않게 하기 위해서다.
 - Secret: `ISSUE_TOKEN`(발행 저장소 Issues·Contents 쓰기, 선택으로 Administration). alert는 `github.token`을 쓴다.
 
 ## 9. 장애 대응

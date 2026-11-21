@@ -3,6 +3,7 @@
 linkareer:
   enabled: true
   max_list_pages: 15   # 20건/페이지. 2026-11-21 기준 110건
+  max_detail: 150      # 실행당 상세 조회 상한 (공채 홈페이지 URL용, 공고당 1회)
   # https://linkareer.com/list/recruit 필터: 직무 IT/개발, 신입·인턴, 기업형태 대기업(1)·공기업(3)·중견기업(5)
   filters:
     categoryIDs: [100003]

@@ -87,3 +87,29 @@ def test_week_label():
     assert week_label(date(2026, 11, 23)) == "11월 4째주"
     assert week_label(date(2026, 11, 30)) == "12월 1째주"  # 11/30~12/6: 목요일 12/3
     assert week_label(date(2026, 12, 28)) == "12월 5째주"
+
+
+def test_apply_urls():
+    assert N.clean_url("https://a.co/jobs/1?utm_source=jasoseol&x=1") == "https://a.co/jobs/1?x=1"
+    assert N.clean_url("recruit@a.co") is None and N.clean_url("홈페이지 참조") is None
+    apply, home = linkareer.parse_detail(read("linkareer_detail_365742.html"), "365742")
+    assert apply == "https://ahnlab.recruiter.co.kr/career/jobs/134679" and home.startswith("https://")
+    items = jasoseol.parse_list(json.loads(read("jasoseol_filtered.json")), NOW, {160, *range(164, 183)})
+    assert all(p.apply_url and "utm_" not in p.apply_url for p in items)
+
+
+def test_fill_apply_urls_once(monkeypatch):
+    from recruit import pipeline
+    from recruit.sources.linkareer import Linkareer
+
+    calls = []
+    monkeypatch.setattr(Linkareer, "fetch_detail", lambda self, sid: calls.append(sid) or ("https://r.co/" + sid, None))
+    ms = merge([], [P("linkareer", "1", "A사", "신입"), P("jasoseol", "2", "B사", "인턴", apply_url="https://b.co/j"),
+                    P("linkareer", "3", "C사", "인턴")], TODAY, NO)
+    assert pipeline.fill_apply_urls(ms, None, NOW, limit=1) == 1
+    assert pipeline.fill_apply_urls(ms, None, NOW, limit=10) == 1
+    assert pipeline.fill_apply_urls(ms, None, NOW, limit=10) == 0  # 한 번 조회한 공고는 다시 요청하지 않음
+    assert sorted(calls) == ["1", "3"]
+    m = next(m for m in ms if m.apply_url == "https://r.co/1")
+    body, _ = render(select_sections([m], TODAY, None, 7), TODAY, {}, "https://x/w", "https://x/p")
+    assert "[**공채 홈페이지**](https://r.co/1)" in body

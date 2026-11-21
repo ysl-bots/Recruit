@@ -93,3 +93,18 @@ def employment(*texts: str) -> str:
     if "신입" in t or "공채" in t or "공개채용" in t:
         return "신입"
     return "기타"
+
+
+_URL = re.compile(r"^https?://[^\s<>\"']+$")
+
+
+def clean_url(value) -> str | None:
+    """http(s) URL만 남기고 utm_* 추적 파라미터를 지운다. 이메일·안내문 등은 None."""
+    from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
+
+    s = str(value or "").strip()
+    if not _URL.match(s):
+        return None
+    u = urlsplit(s)
+    q = [(k, v) for k, v in parse_qsl(u.query, keep_blank_values=True) if not k.lower().startswith("utm_")]
+    return urlunsplit((u.scheme, u.netloc, u.path, urlencode(q), u.fragment))
