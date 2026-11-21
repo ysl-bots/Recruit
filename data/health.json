@@ -1,0 +1,24 @@
+{
+ "days": [
+  {
+   "date": "2026-11-21",
+   "raw": {
+    "linkareer": 1000,
+    "jasoseol": 294
+   },
+   "new": {
+    "linkareer": 1000,
+    "jasoseol": 146
+   },
+   "errors": {
+    "catch": "차단(403 https://www.catch.co.kr/api/v1.0/recruit/information/getRecruitList)"
+   }
+  }
+ ],
+ "disabled": {},
+ "block_streak": {
+  "linkareer": 0,
+  "jasoseol": 0,
+  "catch": 1
+ }
+}
