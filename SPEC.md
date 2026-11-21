@@ -87,6 +87,8 @@
 |---|---|
 | `data/state.json` | 내부 상태. 모든 병합 공고(마감 후 30일 보존)와 메타(`published`, `last_collected`) |
 | `data/postings.json` | 에이전트용. 열린 공고 전체 |
+
+코드 저장소는 Private이므로 `postings.json`(매일)과 `weekly/YYYY-Www.json`(발행 시)을 구독 저장소의 `data/`에 Contents API로 올린다. Issue와 README의 링크는 구독 저장소 경로를 가리킨다. 내용이 같으면 커밋하지 않고, 업로드가 실패해도 수집·발행은 계속하며 alert를 남긴다.
 | `data/health.json` | 소스별 일일 수집 기록, 연속 차단 일수, 자동 off(`disabled`) |
 | `data/weekly/YYYY-Www.json` | 주간 Issue에 실린 공고와 섹션 |
 
@@ -126,7 +128,7 @@
 
 - 세 워크플로 모두 `concurrency: recruit-state`로 상태 파일 동시 수정을 막는다.
 - 수동 실행(`workflow_dispatch`)은 기본값이 dry_run이다.
-- Secret: `ISSUE_TOKEN`(발행 저장소 Issues 쓰기, 선택으로 Administration). alert는 `github.token`을 쓴다.
+- Secret: `ISSUE_TOKEN`(발행 저장소 Issues·Contents 쓰기, 선택으로 Administration). alert는 `github.token`을 쓴다.
 
 ## 9. 장애 대응
 

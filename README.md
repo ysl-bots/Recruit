@@ -3,7 +3,7 @@
 링커리어·자소설닷컴에서 **신입·인턴 / IT 직군 / 대기업·중견기업·공기업** 채용 공고를 매일 모아 중복을 합치고, 매주 GitHub Issue로 발행하는 봇입니다.
 
 - 구독: **[ysl-bots/Recruit-Subscribe-IT](https://github.com/ysl-bots/Recruit-Subscribe-IT)** ← Watch
-- 이 저장소: 수집·병합·발행 코드, 워크플로, 상태 데이터(`data/`)
+- 이 저장소(Private): 수집·병합·발행 코드, 워크플로, 상태 데이터(`data/`). 구독자용 JSON은 구독 저장소 `data/`에 복사합니다.
 - 설계: [SPEC.md](SPEC.md) · 소스 조사: [docs/spike.md](docs/spike.md)
 
 ## 동작 방식
@@ -26,8 +26,8 @@ IT 여부, 기업 규모, 고용형태는 봇이 따로 판정하지 않고 사�
 ## 데이터
 | 파일 | 내용 |
 |---|---|
-| `data/postings.json` | 에이전트용. 현재 열린 공고 전체 (매일 갱신) |
-| `data/weekly/YYYY-Www.json` | 주간 Issue에 실린 공고와 섹션 |
+| `data/postings.json` | 에이전트용. 현재 열린 공고 전체 (매일 갱신). 구독 저장소 `data/`에도 올림 |
+| `data/weekly/YYYY-Www.json` | 주간 Issue에 실린 공고와 섹션. 구독 저장소 `data/weekly/`에도 올림 |
 | `data/state.json` | 내부 상태. 마감 30일 이내 공고를 포함한 전체 병합 공고, 발행 이력 |
 | `data/health.json` | 소스별 일일 수집 기록, 자동 off 목록(`disabled`) |
 | `data/company_alias.json` / `data/dedupe_overrides.json` | 회사명 별칭 / 병합 강제 규칙(`force_merge`, `force_split`에 `"source:id"` 쌍) |
@@ -37,7 +37,7 @@ IT 여부, 기업 규모, 고용형태는 봇이 따로 판정하지 않고 사�
 ## 설정 (Settings → Secrets and variables → Actions)
 | 종류 | 이름 | 필수 | 설명 |
 |---|---|---|---|
-| Secret | `ISSUE_TOKEN` | ✅ | fine-grained PAT. Recruit-Subscribe-IT에 `Issues: Read and write`, (선택) `Administration: Read and write` |
+| Secret | `ISSUE_TOKEN` | ✅ | fine-grained PAT. Recruit-Subscribe-IT에 `Issues: Read and write`, `Contents: Read and write`(공개 데이터 업로드), (선택) `Administration: Read and write` |
 | Variable | `ISSUE_REPO` | 선택 | 기본 `ysl-bots/Recruit-Subscribe-IT` |
 
 Workflow permissions는 **Read and write**여야 상태를 커밋할 수 있습니다.

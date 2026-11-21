@@ -16,7 +16,7 @@ from .sources import SOURCES
 from .config import Settings, now_kst, today_kst
 from .dedupe import merge
 from .models import MergedPosting
-from .publish import comment, create_issue, lock_issue, open_alert, renew_interaction_limit
+from .publish import comment, create_issue, lock_issue, open_alert, renew_interaction_limit, sync_public
 from .render import render, week_id, week_label, week_range
 from .state import State, load_health, open_public, save_health
 
@@ -89,6 +89,10 @@ def daily(settings: Settings, client, offline: bool = False, dry_run: bool = Fal
     if dry_run:
         return 0
     state.save(settings.data_dir)
+    if not offline:
+        failed = sync_public(settings.github_token, settings.issue_repo, settings.data_dir, ["postings.json"], f"chore(data): postings {today}")
+        if failed:
+            alerts.append(f"- 공개 데이터 업로드 실패: {', '.join(failed)} (ISSUE_TOKEN Contents 권한 확인)")
     if alerts and not offline:
         token = os.environ.get("ALERT_TOKEN") or os.environ.get("GITHUB_TOKEN") or settings.github_token
         open_alert(token, settings.alert_repo, "[alert] 수집 이상 감지", f"{today} 수집 결과\n\n" + "\n".join(alerts))
@@ -131,7 +135,8 @@ def weekly(settings: Settings, dry_run: bool = False, out: str | None = None, fo
 
     cfg = load_yaml("sources.yaml")
     failed = {k: v for k, v in failed.items() if cfg.get(k, {}).get("enabled", True)}
-    raw = f"https://raw.githubusercontent.com/{settings.code_repo}/main/data"
+    # 코드 저장소는 Private이므로 구독자가 읽을 수 있는 구독 저장소의 사본을 링크한다
+    raw = f"https://raw.githubusercontent.com/{settings.issue_repo}/main/data"
     body, extra = render(sections, today, failed, f"{raw}/weekly/{wid}.json", f"{raw}/postings.json")
     n_new = len(sections["new"]) + len(sections["rolling"])
     title = f"[IT 공채] {week_label(today)} ({start:%m/%d}~{end:%m/%d}) 신규 {n_new}건 · 마감임박 {len(sections['urgent'])}건"
@@ -147,6 +152,11 @@ def weekly(settings: Settings, dry_run: bool = False, out: str | None = None, fo
             Path(out).write_text(text, encoding="utf-8")
         print(text if not out else f"{out}에 저장 ({len(text)}자)")
         return 0
+    # Issue 링크가 바로 열리도록 주간 JSON을 먼저 올린다 (실패해도 발행은 진행)
+    weekly_path = settings.data_dir / "weekly" / f"{wid}.json"
+    weekly_path.parent.mkdir(parents=True, exist_ok=True)
+    weekly_path.write_text(json.dumps(weekly_json, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    sync_public(settings.github_token, settings.issue_repo, settings.data_dir, [f"weekly/{wid}.json", "postings.json"], f"chore(data): weekly {wid}")
     number = create_issue(settings.github_token, settings.issue_repo, title, body, ["weekly", "it"])
     # Issue를 만든 뒤에는 어떤 실패가 나도 발행 기록을 저장해야 중복 발행이 생기지 않는다
     for c in extra:
@@ -164,8 +174,6 @@ def weekly(settings: Settings, dry_run: bool = False, out: str | None = None, fo
             if wid not in m.published_weeks:
                 m.published_weeks.append(wid)
     published[wid] = {"date": str(today), "number": number, "counts": {k: len(v) for k, v in sections.items()}}
-    (settings.data_dir / "weekly").mkdir(parents=True, exist_ok=True)
-    (settings.data_dir / "weekly" / f"{wid}.json").write_text(json.dumps(weekly_json, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     state.save(settings.data_dir)
     log.info("발행 완료 %s #%d", settings.issue_repo, number)
     return 0

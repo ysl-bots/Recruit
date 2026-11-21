@@ -20,6 +20,8 @@ concurrency:
   cancel-in-progress: false
 
 env:
+  ISSUE_TOKEN: ${{ secrets.ISSUE_TOKEN }} # 구독 저장소에 postings.json 업로드
+  ISSUE_REPO: ${{ vars.ISSUE_REPO }}
   ALERT_TOKEN: ${{ github.token }}
   ALERT_REPO: ${{ github.repository }}
   CODE_REPO: ${{ github.repository }}

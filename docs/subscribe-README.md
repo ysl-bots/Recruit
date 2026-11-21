@@ -16,7 +16,7 @@ IT 직무 신입·인턴 공채 공고를 매주 월요일 아침 Issue로 받�
 Codex·Claude Code 같은 에이전트에 다음처럼 요청하세요.
 
 ```
-https://raw.githubusercontent.com/ysl-bots/Recruit/main/data/postings.json 을 읽고,
+https://raw.githubusercontent.com/ysl-bots/Recruit-Subscribe-IT/main/data/postings.json 을 읽고,
 내 이력([이력 페이지 URL 또는 파일])과 비교해 지원할 만한 공고를 마감일 순으로 정리해줘.
 divisions 필드가 있으면 내 직무와 맞는 부문만 골라줘.
 ```
