@@ -1,7 +1,18 @@
 {
  "meta": {
   "last_collected": "2026-11-23T11:52:38+09:00",
-  "last_errors": {}
+  "last_errors": {},
+  "published": {
+   "2026-W48": {
+    "date": "2026-11-23",
+    "number": 1,
+    "counts": {
+     "urgent": 25,
+     "new": 37,
+     "rolling": 56
+    }
+   }
+  }
  },
  "postings": [
   {
@@ -51,7 +62,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -80,7 +93,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -109,7 +124,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -138,7 +155,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -167,7 +186,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -197,7 +218,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -236,7 +259,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -265,7 +290,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -294,7 +321,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -323,7 +352,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -352,7 +383,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -381,7 +414,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -410,7 +445,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -476,7 +513,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -513,7 +552,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -542,7 +583,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -572,7 +615,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -601,7 +646,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -631,7 +678,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -660,7 +709,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -690,7 +741,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -719,7 +772,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -756,7 +811,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -785,7 +842,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -814,7 +873,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -843,7 +904,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -872,7 +935,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -901,7 +966,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -930,7 +997,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -960,7 +1029,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1003,7 +1074,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1032,7 +1105,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1062,7 +1137,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1107,7 +1184,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1150,7 +1229,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1179,7 +1260,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1209,7 +1292,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1238,7 +1323,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1267,7 +1354,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1296,7 +1385,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1327,7 +1418,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1393,7 +1486,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1422,7 +1517,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1451,7 +1548,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1480,7 +1579,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1509,7 +1610,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1538,7 +1641,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1567,7 +1672,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1596,7 +1703,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1625,7 +1734,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1655,7 +1766,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1699,7 +1812,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1736,7 +1851,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1765,7 +1882,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1799,7 +1918,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1829,7 +1950,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1945,7 +2068,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -1974,7 +2099,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2003,7 +2130,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2032,7 +2161,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2062,7 +2193,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2161,7 +2294,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2190,7 +2325,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2219,7 +2356,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2266,7 +2405,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2295,7 +2436,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2325,7 +2468,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2354,7 +2499,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2383,7 +2530,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2413,7 +2562,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2443,7 +2594,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2473,7 +2626,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2502,7 +2657,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2531,7 +2688,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2560,7 +2719,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2589,7 +2750,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2619,7 +2782,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2648,7 +2813,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2677,7 +2844,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2706,7 +2875,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2750,7 +2921,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2779,7 +2952,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2808,7 +2983,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2837,7 +3014,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2866,7 +3045,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2905,7 +3086,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2934,7 +3117,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2964,7 +3149,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -2994,7 +3181,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3023,7 +3212,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3053,7 +3244,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3082,7 +3275,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3111,7 +3306,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3142,7 +3339,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3171,7 +3370,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3243,7 +3444,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3272,7 +3475,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3301,7 +3506,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3360,7 +3567,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3411,7 +3620,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3448,7 +3659,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3478,7 +3691,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3507,7 +3722,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3536,7 +3753,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3565,7 +3784,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3594,7 +3815,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3660,7 +3883,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3689,7 +3914,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3720,7 +3947,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3749,7 +3978,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3778,7 +4009,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3807,7 +4040,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3836,7 +4071,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-21",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3903,7 +4140,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-23",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3933,7 +4172,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-23",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -3962,7 +4203,9 @@
    "detail_checked": true,
    "first_seen": "2026-11-23",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -4016,7 +4259,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-23",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   },
   {
@@ -4078,7 +4323,9 @@
    "detail_checked": false,
    "first_seen": "2026-11-23",
    "last_seen": "2026-11-23",
-   "published_weeks": [],
+   "published_weeks": [
+    "2026-W48"
+   ],
    "status": "open"
   }
  ]
