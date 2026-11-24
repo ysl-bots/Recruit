@@ -1,184 +1,7 @@
 {
- "updated": "2026-11-23T11:52:38+09:00",
- "count": 118,
+ "updated": "2026-11-24T15:08:22+09:00",
+ "count": 123,
  "postings": [
-  {
-   "id": "b7278a6d9278",
-   "company": "ey한영",
-   "company_name": "EY한영",
-   "title": "[EY한영] 감사부문 리스크관리 지원 단기 인턴(3개월)",
-   "deadline": "2026-11-23",
-   "deadline_type": "date",
-   "start_date": null,
-   "employment": "채용연계형 인턴",
-   "sources": [
-    {
-     "source": "linkareer",
-     "source_id": "364647",
-     "url": "https://linkareer.com/activity/364647"
-    }
-   ],
-   "job_tags": [
-    "데이터분석"
-   ],
-   "divisions": null,
-   "it_divisions": [],
-   "apply_url": "https://eycareers-kr.recruiter.co.kr/career/jobs/131812",
-   "homepage_url": "https://www.ey.com/ko_kr",
-   "detail_checked": true,
-   "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
-   "published_weeks": [
-    "2026-W48"
-   ],
-   "status": "open"
-  },
-  {
-   "id": "f0ecb860d006",
-   "company": "대학내일es",
-   "company_name": "대학내일ES",
-   "title": "[대학내일] 재무 및 총무, 웹 기획_신입(정규직/전환형)",
-   "deadline": "2026-11-23",
-   "deadline_type": "date",
-   "start_date": null,
-   "employment": "신입",
-   "sources": [
-    {
-     "source": "linkareer",
-     "source_id": "363116",
-     "url": "https://linkareer.com/activity/363116"
-    }
-   ],
-   "job_tags": [
-    "IT기획/PM/PO"
-   ],
-   "divisions": null,
-   "it_divisions": [],
-   "apply_url": "https://univ.careerlink.kr/",
-   "homepage_url": "https://corp.univ.me/",
-   "detail_checked": true,
-   "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
-   "published_weeks": [
-    "2026-W48"
-   ],
-   "status": "open"
-  },
-  {
-   "id": "007482bb09c2",
-   "company": "우리금융캐피탈",
-   "company_name": "우리금융캐피탈",
-   "title": "2027년 정규직 신입사원 채용",
-   "deadline": "2026-11-23",
-   "deadline_type": "date",
-   "start_date": "2026-11-13",
-   "employment": "신입",
-   "sources": [
-    {
-     "source": "jasoseol",
-     "source_id": "107205",
-     "url": "https://jasoseol.com/recruit/107205"
-    },
-    {
-     "source": "linkareer",
-     "source_id": "364171",
-     "url": "https://linkareer.com/activity/364171"
-    }
-   ],
-   "job_tags": [
-    "네트워크·보안·운영",
-    "빅데이터·AI(인공지능)",
-    "SW·솔루션·ERP",
-    "서비스기획·PM",
-    "프론트엔드개발",
-    "서버·백엔드개발",
-    "데이터엔지니어",
-    "데이터분석",
-    "IT/개발"
-   ],
-   "divisions": [
-    {
-     "name": "디지털/IT",
-     "is_it": true,
-     "employment": "신입"
-    }
-   ],
-   "it_divisions": [
-    "디지털/IT"
-   ],
-   "apply_url": "https://woorifcapital.incruit.com/main/main.asp",
-   "homepage_url": null,
-   "detail_checked": false,
-   "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
-   "published_weeks": [
-    "2026-W48"
-   ],
-   "status": "open"
-  },
-  {
-   "id": "02c15ae2b22d",
-   "company": "카카오게임즈",
-   "company_name": "카카오게임즈",
-   "title": "[카카오게임즈] [체험형 인턴] 유료화 기획 인턴 채용",
-   "deadline": "2026-11-23",
-   "deadline_type": "date",
-   "start_date": null,
-   "employment": "체험형 인턴",
-   "sources": [
-    {
-     "source": "linkareer",
-     "source_id": "362052",
-     "url": "https://linkareer.com/activity/362052"
-    }
-   ],
-   "job_tags": [
-    "게임개발/기획"
-   ],
-   "divisions": null,
-   "it_divisions": [],
-   "apply_url": "https://recruit.kakaogames.com/ko/o/243139",
-   "homepage_url": "https://kakaogames.com/",
-   "detail_checked": true,
-   "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
-   "published_weeks": [
-    "2026-W48"
-   ],
-   "status": "open"
-  },
-  {
-   "id": "d31e667e0e51",
-   "company": "펄어비스",
-   "company_name": "펄어비스",
-   "title": "[펄어비스] 2027 채용연계형 겨울 인턴십",
-   "deadline": "2026-11-23",
-   "deadline_type": "date",
-   "start_date": null,
-   "employment": "채용연계형 인턴",
-   "sources": [
-    {
-     "source": "linkareer",
-     "source_id": "362994",
-     "url": "https://linkareer.com/activity/362994"
-    }
-   ],
-   "job_tags": [
-    "IT/개발",
-    "게임개발/기획"
-   ],
-   "divisions": null,
-   "it_divisions": [],
-   "apply_url": "https://www.pearlabyss.com/ko-KR/Company/Careers/List?_jobGroupCode=8",
-   "homepage_url": null,
-   "detail_checked": true,
-   "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
-   "published_weeks": [
-    "2026-W48"
-   ],
-   "status": "open"
-  },
   {
    "id": "bfe94dbde9dc",
    "company": "넷마블네오",
@@ -219,7 +42,7 @@
    "homepage_url": null,
    "detail_checked": false,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -250,7 +73,7 @@
    "homepage_url": "https://lotte-jobcafe.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -281,7 +104,7 @@
    "homepage_url": "https://www.naverlabs.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -312,7 +135,7 @@
    "homepage_url": "https://www.naverlabs.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -343,7 +166,7 @@
    "homepage_url": "https://www.bkl.co.kr/law",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -374,7 +197,7 @@
    "homepage_url": "https://www.kakaobank.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -415,7 +238,7 @@
    "homepage_url": null,
    "detail_checked": false,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -446,10 +269,40 @@
    "homepage_url": "https://www.ey.com/ko_kr",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
+   "status": "open"
+  },
+  {
+   "id": "26d0deb2a9cd",
+   "company": "ey한영",
+   "company_name": "EY한영",
+   "title": "[EY한영] AI Center 인턴 (정규전환형)",
+   "deadline": "2026-11-26",
+   "deadline_type": "date",
+   "start_date": null,
+   "employment": "채용연계형 인턴",
+   "sources": [
+    {
+     "source": "linkareer",
+     "source_id": "366295",
+     "url": "https://linkareer.com/activity/366295"
+    }
+   ],
+   "job_tags": [
+    "데이터분석",
+    "AI/ML엔지니어"
+   ],
+   "divisions": null,
+   "it_divisions": [],
+   "apply_url": "https://eycareers-kr.recruiter.co.kr/career/jobs/135244",
+   "homepage_url": "https://www.ey.com/ko_kr",
+   "detail_checked": true,
+   "first_seen": "2026-11-24",
+   "last_seen": "2026-11-24",
+   "published_weeks": [],
    "status": "open"
   },
   {
@@ -477,7 +330,7 @@
    "homepage_url": "https://www.airfst.com/kr/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -509,7 +362,7 @@
    "homepage_url": "https://www.ey.com/ko_kr",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -542,10 +395,39 @@
    "homepage_url": "https://lsitc.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
+   "status": "open"
+  },
+  {
+   "id": "d01900e8005f",
+   "company": "sfa반도체",
+   "company_name": "SFA반도체",
+   "title": "[SFA반도체] [공채] 2026년 5차 수시채용_정보보안(팀원) 부문 (11월 29일 마감)",
+   "deadline": "2026-11-29",
+   "deadline_type": "date",
+   "start_date": null,
+   "employment": "신입",
+   "sources": [
+    {
+     "source": "linkareer",
+     "source_id": "366476",
+     "url": "https://linkareer.com/activity/366476"
+    }
+   ],
+   "job_tags": [
+    "DevOps/클라우드/보안"
+   ],
+   "divisions": null,
+   "it_divisions": [],
+   "apply_url": "https://recruit.sfa.co.kr/sfa/recruit?id=1560&pg=1",
+   "homepage_url": "https://www.sfasemicon.com/",
+   "detail_checked": true,
+   "first_seen": "2026-11-24",
+   "last_seen": "2026-11-24",
+   "published_weeks": [],
    "status": "open"
   },
   {
@@ -573,7 +455,7 @@
    "homepage_url": "https://www.imarketkorea.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -604,7 +486,7 @@
    "homepage_url": "https://ahnlab.recruiter.co.kr/career/home",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -635,7 +517,7 @@
    "homepage_url": "https://www.techcross.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -688,7 +570,7 @@
    "homepage_url": null,
    "detail_checked": false,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -734,7 +616,7 @@
    "homepage_url": null,
    "detail_checked": false,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -765,7 +647,7 @@
    "homepage_url": "https://vinegroup.co.kr/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -797,7 +679,7 @@
    "homepage_url": "https://www.smilegate.com/ko/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -898,7 +780,7 @@
    "homepage_url": null,
    "detail_checked": false,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -929,7 +811,7 @@
    "homepage_url": "https://www.glninternational.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -968,7 +850,7 @@
    "homepage_url": null,
    "detail_checked": false,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1013,7 +895,7 @@
    "homepage_url": null,
    "detail_checked": false,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1077,10 +959,39 @@
    "homepage_url": null,
    "detail_checked": false,
    "first_seen": "2026-11-23",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
+   "status": "open"
+  },
+  {
+   "id": "8ec56f21c94c",
+   "company": "연합인포맥스",
+   "company_name": "연합인포맥스",
+   "title": "[연합인포맥스] IT·AI 개발 부문 신입/경력 사원 채용",
+   "deadline": "2026-12-02",
+   "deadline_type": "date",
+   "start_date": null,
+   "employment": "신입",
+   "sources": [
+    {
+     "source": "linkareer",
+     "source_id": "366277",
+     "url": "https://linkareer.com/activity/366277"
+    }
+   ],
+   "job_tags": [
+    "IT/개발"
+   ],
+   "divisions": null,
+   "it_divisions": [],
+   "apply_url": "https://recruit.einfomax.co.kr/#/board/notice/view/1/6b03984bc6de9800145b7bfc",
+   "homepage_url": null,
+   "detail_checked": true,
+   "first_seen": "2026-11-24",
+   "last_seen": "2026-11-24",
+   "published_weeks": [],
    "status": "open"
   },
   {
@@ -1126,7 +1037,7 @@
    "homepage_url": null,
    "detail_checked": false,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1157,7 +1068,7 @@
    "homepage_url": "https://hyundaifuturenet.com/index.do",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1189,7 +1100,7 @@
    "homepage_url": "https://www.ehyundai.com/newPortal/group/CO/CO000001.do?ir=0#stit_5",
    "detail_checked": true,
    "first_seen": "2026-11-23",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1220,7 +1131,7 @@
    "homepage_url": "https://www.pwc.com/kr/ko.html",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1251,7 +1162,7 @@
    "homepage_url": "https://www.pwc.com/kr/ko.html",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1271,6 +1182,11 @@
      "source": "jasoseol",
      "source_id": "107189",
      "url": "https://jasoseol.com/recruit/107189"
+    },
+    {
+     "source": "linkareer",
+     "source_id": "366480",
+     "url": "https://linkareer.com/activity/366480"
     }
    ],
    "job_tags": [
@@ -1280,7 +1196,9 @@
     "네트워크·보안·운영",
     "HW·임베디드",
     "SW·솔루션·ERP",
-    "서버·백엔드개발"
+    "서버·백엔드개발",
+    "시스템/ERP개발",
+    "QA/기술지원"
    ],
    "divisions": [
     {
@@ -1320,7 +1238,7 @@
    "homepage_url": null,
    "detail_checked": false,
    "first_seen": "2026-11-23",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1367,7 +1285,7 @@
    "homepage_url": null,
    "detail_checked": false,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1398,7 +1316,7 @@
    "homepage_url": "https://www.kins.re.kr/index",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1466,7 +1384,7 @@
    "homepage_url": null,
    "detail_checked": false,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1522,10 +1440,39 @@
    "homepage_url": null,
    "detail_checked": false,
    "first_seen": "2026-11-23",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
+   "status": "open"
+  },
+  {
+   "id": "3c873ef6a6de",
+   "company": "sfa반도체",
+   "company_name": "SFA반도체",
+   "title": "[SFA반도체] [공채] 2026년 5차 수시채용_20개 부문 (12월 6일 마감)",
+   "deadline": "2026-12-06",
+   "deadline_type": "date",
+   "start_date": null,
+   "employment": "신입",
+   "sources": [
+    {
+     "source": "linkareer",
+     "source_id": "366475",
+     "url": "https://linkareer.com/activity/366475"
+    }
+   ],
+   "job_tags": [
+    "시스템/ERP개발"
+   ],
+   "divisions": null,
+   "it_divisions": [],
+   "apply_url": "https://recruit.sfa.co.kr/sfa/recruit?id=1561&pg=1",
+   "homepage_url": "https://www.sfasemicon.com/",
+   "detail_checked": true,
+   "first_seen": "2026-11-24",
+   "last_seen": "2026-11-24",
+   "published_weeks": [],
    "status": "open"
   },
   {
@@ -1553,10 +1500,54 @@
    "homepage_url": "https://comic.naver.com/index",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
+   "status": "open"
+  },
+  {
+   "id": "7dd83680ee0f",
+   "company": "한국석유공업",
+   "company_name": "한국석유공업",
+   "title": "정보운영팀 채용 (신입)",
+   "deadline": "2026-12-06",
+   "deadline_type": "date",
+   "start_date": "2026-11-24",
+   "employment": "신입",
+   "sources": [
+    {
+     "source": "jasoseol",
+     "source_id": "107352",
+     "url": "https://jasoseol.com/recruit/107352"
+    },
+    {
+     "source": "linkareer",
+     "source_id": "366518",
+     "url": "https://linkareer.com/activity/366518"
+    }
+   ],
+   "job_tags": [
+    "SW·솔루션·ERP",
+    "서버·백엔드개발",
+    "IT/개발"
+   ],
+   "divisions": [
+    {
+     "name": "기업 정보 시스템 운영 및 Spring Framework 개발자",
+     "is_it": true,
+     "employment": "신입"
+    }
+   ],
+   "it_divisions": [
+    "기업 정보 시스템 운영 및 Spring Framework 개발자"
+   ],
+   "apply_url": "https://kpgroup.recruiter.co.kr/career/home",
+   "homepage_url": null,
+   "detail_checked": false,
+   "first_seen": "2026-11-24",
+   "last_seen": "2026-11-24",
+   "published_weeks": [],
    "status": "open"
   },
   {
@@ -1592,7 +1583,7 @@
    "homepage_url": null,
    "detail_checked": false,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1633,7 +1624,7 @@
    "homepage_url": null,
    "detail_checked": false,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1672,7 +1663,7 @@
    "homepage_url": null,
    "detail_checked": false,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1703,7 +1694,7 @@
    "homepage_url": "https://webtoonscorp.com/",
    "detail_checked": true,
    "first_seen": "2026-11-23",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1736,7 +1727,7 @@
    "homepage_url": "https://www.lxinternational.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1767,7 +1758,7 @@
    "homepage_url": "https://www.dine.co.kr/kr/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1799,7 +1790,7 @@
    "homepage_url": "https://ahnlab.recruiter.co.kr/career/home",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1830,7 +1821,7 @@
    "homepage_url": null,
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1863,7 +1854,7 @@
    "homepage_url": "https://www.ahnlab.com/ko",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1894,7 +1885,7 @@
    "homepage_url": "https://www.ahnlab.com/ko",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1925,7 +1916,7 @@
    "homepage_url": "https://ahnlab.recruiter.co.kr/career/home",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1956,7 +1947,7 @@
    "homepage_url": "https://www.webzen.co.kr/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -1987,7 +1978,7 @@
    "homepage_url": "https://www.webzen.co.kr/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2018,7 +2009,7 @@
    "homepage_url": "https://www.webzen.co.kr/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2049,7 +2040,7 @@
    "homepage_url": "https://www.webzen.co.kr/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2080,7 +2071,7 @@
    "homepage_url": "https://www.webzen.co.kr/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2111,7 +2102,7 @@
    "homepage_url": "https://www.webzen.co.kr/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2150,7 +2141,7 @@
    "homepage_url": null,
    "detail_checked": false,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2195,7 +2186,7 @@
    "homepage_url": null,
    "detail_checked": false,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2240,7 +2231,7 @@
    "homepage_url": null,
    "detail_checked": false,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2272,7 +2263,7 @@
    "homepage_url": "https://www.kortek.co.kr/kor/index.do",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2308,7 +2299,7 @@
    "homepage_url": "https://www.ubivelox.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2344,7 +2335,7 @@
    "homepage_url": "https://www.npc.co.kr/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2375,7 +2366,7 @@
    "homepage_url": null,
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2406,7 +2397,7 @@
    "homepage_url": null,
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2437,7 +2428,7 @@
    "homepage_url": "https://corp.oliveyoung.com/ko",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2468,7 +2459,7 @@
    "homepage_url": "https://www.evsis.co.kr/h",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2499,7 +2490,7 @@
    "homepage_url": "http://fine-tech.kr/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2530,7 +2521,7 @@
    "homepage_url": "http://www.kwinternational.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2561,7 +2552,7 @@
    "homepage_url": null,
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2593,10 +2584,130 @@
    "homepage_url": "https://www.lgbr.co.kr/index.do",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
+   "status": "open"
+  },
+  {
+   "id": "13083ab73d8a",
+   "company": "lg경영개발원",
+   "company_name": "LG경영개발원",
+   "title": "[LG경영개발원] Large Language Model Research Scientist Internship",
+   "deadline": null,
+   "deadline_type": "until_filled",
+   "start_date": null,
+   "employment": "인턴",
+   "sources": [
+    {
+     "source": "linkareer",
+     "source_id": "366651",
+     "url": "https://linkareer.com/activity/366651"
+    }
+   ],
+   "job_tags": [
+    "데이터분석",
+    "AI/ML엔지니어"
+   ],
+   "divisions": null,
+   "it_divisions": [],
+   "apply_url": "https://www.lgresearch.ai/careers/view?seq=329",
+   "homepage_url": "https://www.lgbr.co.kr/index.do",
+   "detail_checked": true,
+   "first_seen": "2026-11-24",
+   "last_seen": "2026-11-24",
+   "published_weeks": [],
+   "status": "open"
+  },
+  {
+   "id": "cd84f0d32a43",
+   "company": "lg경영개발원",
+   "company_name": "LG경영개발원",
+   "title": "[LG경영개발원] Research Scientist - Industrial Optimization",
+   "deadline": null,
+   "deadline_type": "until_filled",
+   "start_date": null,
+   "employment": "신입",
+   "sources": [
+    {
+     "source": "linkareer",
+     "source_id": "366397",
+     "url": "https://linkareer.com/activity/366397"
+    }
+   ],
+   "job_tags": [
+    "데이터분석"
+   ],
+   "divisions": null,
+   "it_divisions": [],
+   "apply_url": "https://www.lgresearch.ai/careers/view?seq=334",
+   "homepage_url": "https://www.lgbr.co.kr/index.do",
+   "detail_checked": true,
+   "first_seen": "2026-11-24",
+   "last_seen": "2026-11-24",
+   "published_weeks": [],
+   "status": "open"
+  },
+  {
+   "id": "b7bfbc2349b4",
+   "company": "lg경영개발원",
+   "company_name": "LG경영개발원",
+   "title": "[LG경영개발원] Research Scientist - Vision Inspection",
+   "deadline": null,
+   "deadline_type": "until_filled",
+   "start_date": null,
+   "employment": "신입",
+   "sources": [
+    {
+     "source": "linkareer",
+     "source_id": "366395",
+     "url": "https://linkareer.com/activity/366395"
+    }
+   ],
+   "job_tags": [
+    "시스템/ERP개발",
+    "데이터분석",
+    "AI/ML엔지니어"
+   ],
+   "divisions": null,
+   "it_divisions": [],
+   "apply_url": "https://www.lgresearch.ai/careers/view?seq=336",
+   "homepage_url": "https://www.lgbr.co.kr/index.do",
+   "detail_checked": true,
+   "first_seen": "2026-11-24",
+   "last_seen": "2026-11-24",
+   "published_weeks": [],
+   "status": "open"
+  },
+  {
+   "id": "044baf8011b7",
+   "company": "lg경영개발원",
+   "company_name": "LG경영개발원",
+   "title": "[LG경영개발원] Research Scientist - Ontology & Knowledge Graph",
+   "deadline": null,
+   "deadline_type": "until_filled",
+   "start_date": null,
+   "employment": "신입",
+   "sources": [
+    {
+     "source": "linkareer",
+     "source_id": "366390",
+     "url": "https://linkareer.com/activity/366390"
+    }
+   ],
+   "job_tags": [
+    "데이터분석",
+    "AI/ML엔지니어"
+   ],
+   "divisions": null,
+   "it_divisions": [],
+   "apply_url": "https://www.lgresearch.ai/careers/view?seq=331",
+   "homepage_url": "https://www.lgbr.co.kr/index.do",
+   "detail_checked": true,
+   "first_seen": "2026-11-24",
+   "last_seen": "2026-11-24",
+   "published_weeks": [],
    "status": "open"
   },
   {
@@ -2624,38 +2735,7 @@
    "homepage_url": null,
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
-   "published_weeks": [
-    "2026-W48"
-   ],
-   "status": "open"
-  },
-  {
-   "id": "3a53f4efd484",
-   "company": "nhn",
-   "company_name": "NHN",
-   "title": "[NHN Enterprise] 서비스 모니터링 관제 및 조치(인재풀)",
-   "deadline": null,
-   "deadline_type": "until_filled",
-   "start_date": null,
-   "employment": "신입",
-   "sources": [
-    {
-     "source": "linkareer",
-     "source_id": "345207",
-     "url": "https://linkareer.com/activity/345207"
-    }
-   ],
-   "job_tags": [
-    "DevOps/클라우드/보안"
-   ],
-   "divisions": null,
-   "it_divisions": [],
-   "apply_url": "https://careers.nhn.com/recruits/4188040849792836347",
-   "homepage_url": null,
-   "detail_checked": true,
-   "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2686,10 +2766,39 @@
    "homepage_url": null,
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
+   "status": "open"
+  },
+  {
+   "id": "2243120c6d6f",
+   "company": "nhn",
+   "company_name": "NHN",
+   "title": "[NHN Enterprise] 서비스 모니터링 관제 및 조치(인재풀)",
+   "deadline": null,
+   "deadline_type": "until_filled",
+   "start_date": null,
+   "employment": "신입",
+   "sources": [
+    {
+     "source": "linkareer",
+     "source_id": "366543",
+     "url": "https://linkareer.com/activity/366543"
+    }
+   ],
+   "job_tags": [
+    "DevOps/클라우드/보안"
+   ],
+   "divisions": null,
+   "it_divisions": [],
+   "apply_url": "https://careers.nhn.com/recruits/4188040849792836347",
+   "homepage_url": null,
+   "detail_checked": true,
+   "first_seen": "2026-11-24",
+   "last_seen": "2026-11-24",
+   "published_weeks": [],
    "status": "open"
   },
   {
@@ -2718,7 +2827,7 @@
    "homepage_url": "https://www.nits-corp.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2749,7 +2858,7 @@
    "homepage_url": null,
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2780,7 +2889,7 @@
    "homepage_url": null,
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2811,7 +2920,7 @@
    "homepage_url": "http://www.samkee.com/eng/main/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2842,7 +2951,7 @@
    "homepage_url": null,
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2873,7 +2982,7 @@
    "homepage_url": "http://www.seohan.com/_ENG/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2904,7 +3013,7 @@
    "homepage_url": "http://www.smamerica.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2935,7 +3044,7 @@
    "homepage_url": "https://www.gabia.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2967,7 +3076,7 @@
    "homepage_url": "https://www.gwebscorp.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -2999,10 +3108,39 @@
    "homepage_url": "https://www.neowiz.com/kr",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
+   "status": "open"
+  },
+  {
+   "id": "65393a2c8c90",
+   "company": "네오위즈",
+   "company_name": "네오위즈",
+   "title": "[네오위즈] [ASTRA9 Studio] 라이프 시뮬레이션 신작 프로젝트 스토리 세계관 설정 기획자 (인턴)",
+   "deadline": null,
+   "deadline_type": "until_filled",
+   "start_date": null,
+   "employment": "체험형 인턴",
+   "sources": [
+    {
+     "source": "linkareer",
+     "source_id": "366619",
+     "url": "https://linkareer.com/activity/366619"
+    }
+   ],
+   "job_tags": [
+    "게임개발/기획"
+   ],
+   "divisions": null,
+   "it_divisions": [],
+   "apply_url": "https://www.neowiz.com/kr/career/browse-job/efa959f0-b02d-4dac-ac26-48d7bccb1af2",
+   "homepage_url": "https://www.neowiz.com",
+   "detail_checked": true,
+   "first_seen": "2026-11-24",
+   "last_seen": "2026-11-24",
+   "published_weeks": [],
    "status": "open"
   },
   {
@@ -3031,7 +3169,7 @@
    "homepage_url": "https://company.nexon.com/ko/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3062,7 +3200,7 @@
    "homepage_url": null,
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3094,7 +3232,7 @@
    "homepage_url": "https://www.netmarble.net/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3125,7 +3263,7 @@
    "homepage_url": "https://www.3ds.com/ko/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3156,7 +3294,7 @@
    "homepage_url": "https://www.dorco.co.kr/kor/main/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3187,7 +3325,7 @@
    "homepage_url": "https://www.dorco.co.kr/kor/main/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3218,7 +3356,7 @@
    "homepage_url": "https://www.mais-ai.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3249,7 +3387,7 @@
    "homepage_url": "https://manpower.co.kr/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3280,7 +3418,7 @@
    "homepage_url": "https://megazone.digital/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3312,7 +3450,7 @@
    "homepage_url": "https://vntg.recruiter.co.kr/career/home",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3344,7 +3482,7 @@
    "homepage_url": "https://sambomotors.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3376,7 +3514,7 @@
    "homepage_url": "https://www.pwc.com/kr/ko.html",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3407,7 +3545,7 @@
    "homepage_url": "https://amkor.com/kr/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3439,7 +3577,7 @@
    "homepage_url": "https://company.webzen.com/ko",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3470,7 +3608,7 @@
    "homepage_url": "https://www.yuhan-kimberly.co.kr/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3502,7 +3640,7 @@
    "homepage_url": "https://www.kakaocorp.com/page/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3534,7 +3672,7 @@
    "homepage_url": "https://www.kakaocorp.com/page/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3565,7 +3703,7 @@
    "homepage_url": "https://www.kakaobank.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3597,7 +3735,7 @@
    "homepage_url": null,
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3628,7 +3766,7 @@
    "homepage_url": "https://kakaostyle.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3659,7 +3797,7 @@
    "homepage_url": null,
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3690,7 +3828,7 @@
    "homepage_url": null,
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3721,7 +3859,7 @@
    "homepage_url": "https://www.kakaopay.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3752,7 +3890,7 @@
    "homepage_url": "https://www.kakaopay.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3783,7 +3921,7 @@
    "homepage_url": "https://www.kakaopay.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3815,7 +3953,7 @@
    "homepage_url": "https://connectwave.co.kr/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3846,7 +3984,7 @@
    "homepage_url": "https://www.com2us.com/ko",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3877,7 +4015,7 @@
    "homepage_url": "https://www.com2us.com/ko",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3909,7 +4047,7 @@
    "homepage_url": "https://www.com2us.com/ko",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3940,7 +4078,7 @@
    "homepage_url": "https://www.com2us.com/ko",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -3971,7 +4109,7 @@
    "homepage_url": null,
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -4002,7 +4140,7 @@
    "homepage_url": "https://www.cloocus.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -4033,7 +4171,7 @@
    "homepage_url": null,
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -4064,7 +4202,7 @@
    "homepage_url": "https://www.hancom.com/",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
@@ -4095,7 +4233,7 @@
    "homepage_url": "https://hyundaifuturenet.com/index.do",
    "detail_checked": true,
    "first_seen": "2026-11-21",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "published_weeks": [
     "2026-W48"
    ],
