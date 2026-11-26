@@ -113,3 +113,21 @@ def test_fill_apply_urls_once(monkeypatch):
     m = next(m for m in ms if m.apply_url == "https://r.co/1")
     body, _ = render(select_sections([m], TODAY, None, 7), TODAY, {}, "https://x/w", "https://x/p")
     assert "[**공채 홈페이지**](https://r.co/1)" in body
+
+
+def _rolling(n):
+    return merge([], [P("linkareer", str(i), f"C{i}사", f"상시 개발자 {i}", deadline=None, deadline_type="rolling") for i in range(n)], date(2026, 11, 20), NO)
+
+
+def test_rolling_folded():
+    body, extra = render({"urgent": [], "new": [], "rolling": _rolling(1)}, TODAY, {}, "https://j", "https://a")
+    assert "## 상시 · 채용시 마감\n\n<details><summary>1건 펼치기</summary>\n\n| 마감" in body
+    assert "\n\n</details>" in body and not extra
+
+
+def test_rolling_fold_split(monkeypatch):
+    import recruit.render as r
+
+    monkeypatch.setattr(r, "MAX_BODY", 1500)
+    body, extra = render({"urgent": [], "new": [], "rolling": _rolling(30)}, TODAY, {}, "https://j", "https://a")
+    assert extra and all(c.count("<details>") == 1 and c.rstrip().endswith("</details>") for c in extra)

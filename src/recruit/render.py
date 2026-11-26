@@ -79,6 +79,17 @@ def table(items: list[MergedPosting], today: date) -> list[str]:
     return rows
 
 
+def fold(block: list[str], n: int) -> list[str]:
+    """제목 아래 표를 <details>로 감싼다. 표 앞뒤 빈 줄이 있어야 GitHub가 표로 렌더링한다."""
+    title, _, *rows = block
+    return [title, "", f"<details><summary>{n}건 펼치기</summary>", "", *rows, "", "</details>"]
+
+
+def unfold(block: list[str]) -> list[str]:
+    title, _, _summary, _, *rows = block
+    return [title, "", *rows[:-2]]
+
+
 def render(sections: dict[str, list[MergedPosting]], today: date, failed: dict[str, str], json_url: str, all_url: str) -> tuple[str, list[str]]:
     """(본문, 이어 붙일 댓글들)."""
     names = {"jasoseol": "자소설닷컴", "linkareer": "링커리어"}
@@ -94,12 +105,16 @@ def render(sections: dict[str, list[MergedPosting]], today: date, failed: dict[s
         "new": "## 이번 주 신규",
         "rolling": "## 상시 · 채용시 마감",
     }
+    # 상시 공고는 매주 거의 그대로 반복돼 본문을 길게 만들므로 접어 둔다
+    folded = {"rolling"}
     for key, title in titles.items():
         items = sections.get(key, [])
         if not items:
             blocks.append([title, "", "_해당 공고 없음_"])
             continue
         blocks.append([title, "", *table(items, today)])
+        if key in folded:
+            blocks[-1] = fold(blocks[-1], len(items))
     foot = ["---", f"에이전트용 데이터: [이번 주 JSON]({json_url}) · [열린 공고 전체 postings.json]({all_url})"]
 
     # 길이 초과 시 블록·행 단위로 댓글로 넘긴다
@@ -111,15 +126,21 @@ def render(sections: dict[str, list[MergedPosting]], today: date, failed: dict[s
             cur += text
             continue
         # 표를 행 단위로 쪼갠다
-        title, _, *rows = block
+        is_folded = block[2].startswith("<details>")
+        title, _, *rows = unfold(block) if is_folded else block
         header, rows = rows[:2], rows[2:]
-        chunk = f"{title} (이어서)\n\n" + "\n".join(header) + "\n"
+
+        def start() -> str:
+            return f"{title} (이어서)\n\n" + ("<details><summary>펼치기</summary>\n\n" if is_folded else "") + "\n".join(header) + "\n"
+
+        end = "\n</details>\n" if is_folded else ""
+        chunk = start()
         for r in rows:
-            if len(chunk) + len(r) + 1 > MAX_BODY:
-                parts.append(chunk)
-                chunk = f"{title} (이어서)\n\n" + "\n".join(header) + "\n"
+            if len(chunk) + len(r) + 1 + len(end) > MAX_BODY:
+                parts.append(chunk + end)
+                chunk = start()
             chunk += r + "\n"
-        parts.append(chunk)
+        parts.append(chunk + end)
     body = cur + "\n".join(foot)
     if parts:
         body = body.replace("\n---\n", "\n_표가 길어 일부를 댓글로 이어 붙였습니다._\n\n---\n", 1)
