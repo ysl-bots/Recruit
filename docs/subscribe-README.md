@@ -23,6 +23,7 @@ divisions 필드가 있으면 내 직무와 맞는 부문만 골라줘.
 
 - `data/postings.json`: 지금 열려 있는 공고 전체 (매일 갱신)
 - `data/weekly/YYYY-Www.json`: 해당 주 Issue에 실린 공고
+- `data/weekly/latest.json`: 가장 최근 주간 Issue에 실린 공고 (고정 링크, 발행 때마다 갱신)
 
 주요 필드: `company_name`, `title`, `deadline`, `deadline_type`(date/rolling/until_filled), `employment`, `job_tags`(사이트 IT 직무 분류), `divisions`(모집 부문, 자소설만), `it_divisions`, `apply_url`(공채 홈페이지), `sources`(원문 링크).
 

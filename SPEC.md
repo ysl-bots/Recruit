@@ -93,7 +93,7 @@
 
 코드 저장소는 Private이므로 `postings.json`(매일)과 `weekly/YYYY-Www.json`(발행 시)을 구독 저장소의 `data/`에 Contents API로 올린다. Issue와 README의 링크는 구독 저장소 경로를 가리킨다. 내용이 같으면 커밋하지 않고, 업로드가 실패해도 수집·발행은 계속하며 alert를 남긴다.
 | `data/health.json` | 소스별 일일 수집 기록, 연속 차단 일수, 자동 off(`disabled`) |
-| `data/weekly/YYYY-Www.json` | 주간 Issue에 실린 공고와 섹션 |
+| `data/weekly/YYYY-Www.json` | 주간 Issue에 실린 공고와 섹션 (최신본은 `weekly/latest.json`에도 복사) |
 
 **마감 처리**
 - 사이트 결과에서 빠진 공고는 닫는다(`close_unseen`). 끝 페이지까지 읽은 소스(`complete`)만 기준으로 삼는다. 병합 공고는 모든 소스 링크가 빠졌을 때만 닫고, 실패했거나 페이지 상한에 걸린 소스의 링크는 살아 있다고 본다.

@@ -190,8 +190,14 @@ def weekly(settings: Settings, dry_run: bool = False, out: str | None = None, fo
     # Issue 링크가 바로 열리도록 주간 JSON을 먼저 올린다 (실패해도 발행은 진행)
     weekly_path = settings.data_dir / "weekly" / f"{wid}.json"
     weekly_path.parent.mkdir(parents=True, exist_ok=True)
-    weekly_path.write_text(json.dumps(weekly_json, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    sync_public(settings.github_token, settings.issue_repo, settings.data_dir, [f"weekly/{wid}.json", "postings.json"], f"chore(data): weekly {wid}")
+    weekly_text = json.dumps(weekly_json, ensure_ascii=False, indent=1) + "\n"
+    weekly_path.write_text(weekly_text, encoding="utf-8")
+    # raw.githubusercontent는 리다이렉트·심볼릭 링크를 따라가지 않으므로 최신 주간본을 고정 경로에 복사해 둔다
+    (weekly_path.parent / "latest.json").write_text(weekly_text, encoding="utf-8")
+    sync_public(
+        settings.github_token, settings.issue_repo, settings.data_dir,
+        [f"weekly/{wid}.json", "weekly/latest.json", "postings.json"], f"chore(data): weekly {wid}",
+    )
     number = create_issue(settings.github_token, settings.issue_repo, title, body, ["weekly", "it"])
     # Issue를 만든 뒤에는 어떤 실패가 나도 발행 기록을 저장해야 중복 발행이 생기지 않는다
     for c in extra:

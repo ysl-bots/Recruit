@@ -27,7 +27,7 @@ IT 여부, 기업 규모, 고용형태는 봇이 따로 판정하지 않고 사�
 | 파일 | 내용 |
 |---|---|
 | `data/postings.json` | 에이전트용. 현재 열린 공고 전체 (매일 갱신). 구독 저장소 `data/`에도 올림 |
-| `data/weekly/YYYY-Www.json` | 주간 Issue에 실린 공고와 섹션. 구독 저장소 `data/weekly/`에도 올림 |
+| `data/weekly/YYYY-Www.json` | 주간 Issue에 실린 공고와 섹션 (최신본은 `weekly/latest.json`에도 복사). 구독 저장소 `data/weekly/`에도 올림 |
 | `data/state.json` | 내부 상태. 마감 30일 이내 공고를 포함한 전체 병합 공고, 발행 이력 |
 | `data/health.json` | 소스별 일일 수집 기록, 자동 off 목록(`disabled`) |
 | `data/company_alias.json` / `data/dedupe_overrides.json` | 회사명 별칭 / 병합 강제 규칙(`force_merge`, `force_split`에 `"source:id"` 쌍) |
