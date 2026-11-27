@@ -71,6 +71,18 @@
     "jasoseol": 19
    },
    "errors": {}
+  },
+  {
+   "date": "2026-11-27",
+   "raw": {
+    "linkareer": 114,
+    "jasoseol": 20
+   },
+   "new": {
+    "linkareer": 114,
+    "jasoseol": 20
+   },
+   "errors": {}
   }
  ],
  "disabled": {},
